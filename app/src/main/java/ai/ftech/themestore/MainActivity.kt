@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         swipeRefreshLayout = findViewById(R.id.swipeRefresh)
 
         var images : MutableList<Image> = mutableListOf<Image>()
+
         images.add(Image(R.drawable.ic_image_0, R.drawable.ic_select))
         images.add(Image(R.drawable.ic_image_1, R.drawable.ic_select))
         images.add(Image(R.drawable.ic_image_10, R.drawable.ic_select))

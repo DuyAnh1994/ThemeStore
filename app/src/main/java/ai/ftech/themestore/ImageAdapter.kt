@@ -9,8 +9,8 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 
-class ImageAdapter(private var mImage: MutableList<Image>,
-                   private var mContext : Context)
+class ImageAdapter(private var listImage: MutableList<Image>,
+                   private var listContext : Context)
     : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageAdapter.ImageViewHolder {
@@ -19,7 +19,7 @@ class ImageAdapter(private var mImage: MutableList<Image>,
     }
 
     override fun onBindViewHolder(holder: ImageAdapter.ImageViewHolder, position: Int) {
-        var image = mImage.get(position)
+        var image = listImage.get(position)
         if(image == null){
             return
         }
@@ -28,8 +28,8 @@ class ImageAdapter(private var mImage: MutableList<Image>,
     }
 
     override fun getItemCount(): Int {
-        if(mImage != null){
-            return mImage.size
+        if(listImage != null){
+            return listImage.size
         }
         else
             return 0
