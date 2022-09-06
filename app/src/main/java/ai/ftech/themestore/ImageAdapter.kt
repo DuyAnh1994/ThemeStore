@@ -1,6 +1,5 @@
 package ai.ftech.themestore
 
-import ai.ftech.themestore.model.Image
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +7,9 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
-class ImageAdapter(private var listImage: MutableList<Image>,
+class ImageAdapter(private var listImageUrls: MutableList<String>,
                    private var listContext : Context)
     : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>(){
 
@@ -19,17 +19,21 @@ class ImageAdapter(private var listImage: MutableList<Image>,
     }
 
     override fun onBindViewHolder(holder: ImageAdapter.ImageViewHolder, position: Int) {
-        var image = listImage.get(position)
+        var image = listImageUrls.get(position)
         if(image == null){
             return
         }
-        holder.ivImage.setImageResource(image.RESOURCE_IMAGE_ID)
-        holder.ibImage.setImageResource(image.IMAGE_BUTTON_SELECT)
+//        holder.ivImage.setImageResource(image.RESOURCE_IMAGE_ID)
+//        holder.ibImage.setImageResource(image.IMAGE_BUTTON_SELECT)
+        Glide.with(listContext)
+            .load(listImageUrls[position])
+            .override(800,800)
+            .into(holder.ivImage)
     }
 
     override fun getItemCount(): Int {
-        if(listImage != null){
-            return listImage.size
+        if(listImageUrls != null){
+            return listImageUrls.size
         }
         else
             return 0
