@@ -2,6 +2,8 @@ package ai.ftech.themestore
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ProgressBar
+import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -19,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         rvImage = findViewById(R.id.rvImage)
         swipeRefreshLayout = findViewById(R.id.swipeRefresh)
 
-        var images : MutableList<String> = mutableListOf<String>()
+        var images: MutableList<String> = mutableListOf<String>()
 
         images.add("https://i.pinimg.com/236x/fa/92/35/fa92357acf0eb53e0e4d4170a2f00cb0.jpg")
         images.add("https://i.pinimg.com/236x/ac/6f/7f/ac6f7fda3d18c5ced8f660291a3f0921.jpg")
@@ -51,9 +53,10 @@ class MainActivity : AppCompatActivity() {
         images.add("https://i.pinimg.com/236x/fa/e5/50/fae5503352eb3050a2430dab469f80b3.jpg")
 
 
-        imageAdapter = ImageAdapter(images,this)
+        imageAdapter = ImageAdapter(images, this)
         rvImage.adapter = imageAdapter
-        var staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        var staggeredGridLayoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         rvImage.layoutManager = staggeredGridLayoutManager
 
         imageAdapter.notifyDataSetChanged()

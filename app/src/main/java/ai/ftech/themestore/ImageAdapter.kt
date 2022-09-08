@@ -44,7 +44,7 @@ class ImageAdapter(private var listImageUrls: MutableList<String>,
         var ibImage : ImageButton
         init {
             ivImage = itemView.findViewById(R.id.ivImage)
-            ibImage = itemView.findViewById(R.id.ibSelect)
+                 ibImage = itemView.findViewById(R.id.ibSelect)
         }
     }
 }
