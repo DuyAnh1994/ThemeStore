@@ -16,8 +16,8 @@
         android:icon="@drawable/ic_search"/>
 
     <item
-        android:id="@+id/action_user"
-        android:title="@string/action_user"
-        android:icon="@drawable/ic_user" />
+        android:id="@+id/action_account"
+        android:title="@string/action_account"
+        android:icon="@drawable/ic_account" />
 
 </menu>
