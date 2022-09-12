@@ -4,6 +4,7 @@ import ai.ftech.themestore.fragment.AccountFragment
 import ai.ftech.themestore.fragment.HomeFragment
 import ai.ftech.themestore.fragment.SearchFragment
 import ai.ftech.themestore.fragment.TopicFragment
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -45,21 +46,34 @@ class MainActivity : AppCompatActivity() {
         vpAdapter.addFragment(2, searchFragment)
         vpAdapter.addFragment(3, accountFragment)
 
-       vpHome.adapter = vpAdapter
-        vpHome.setCurrentItem(1)
-        bottomNavigationView.setOnItemSelectedListener(object : NavigationBarView.OnItemSelectedListener{
+
+        vpHome.adapter = vpAdapter
+        bottomNavigationView.setOnItemSelectedListener(object : NavigationBarView.OnItemSelectedListener {
             override fun onNavigationItemSelected(item: MenuItem): Boolean {
-               when(item.itemId){
-                   R.id.action_home -> Toast.makeText(this@MainActivity, "Home", Toast.LENGTH_SHORT).show()
-                    R.id.action_topic ->  {
-                        Toast.makeText(this@MainActivity, "Topic", Toast.LENGTH_SHORT).show()
+                when (item.itemId) {
+                    R.id.action_home -> {
+                        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, HomeFragment()).commit()
+                        return true
                     }
-                    R.id.action_search ->  Toast.makeText(this@MainActivity, "Search", Toast.LENGTH_SHORT).show()
-                    else ->  Toast.makeText(this@MainActivity, "Account", Toast.LENGTH_SHORT).show()
-               }
-                return true
+                    R.id.action_topic -> {
+                        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, TopicFragment()).commit()
+                        return true
+                    }
+                    R.id.action_search -> {
+                        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, SearchFragment()).commit()
+                        return true
+                    }
+                    else -> {
+                        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, AccountFragment()).commit()
+                        return true
+                    }
+                }
+                return false
             }
         })
+    }
+}
+
 
 
 
@@ -136,6 +150,3 @@ class MainActivity : AppCompatActivity() {
 //            imageAdapter.notifyDataSetChanged()
 //        }
 
-    }
-
-}
