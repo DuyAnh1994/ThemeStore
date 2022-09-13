@@ -1,4 +1,4 @@
-package ai.ftech.themestore.fragment
+package ai.ftech.themestore.fragment.topicFragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,13 +8,12 @@ import android.view.ViewGroup
 import ai.ftech.themestore.R
 
 
-class TopicFragment : Fragment() {
+class RingtonesFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_topic, container, false)
+        return inflater.inflate(R.layout.fragment_ringtones, container, false)
     }
-
 
 }

@@ -4,14 +4,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/topic_fra"
-    tools:context=".fragment.TopicFragment">
+    tools:context=".fragment.topicFragment.TopicFragment">
 
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabTopic"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textSize="30dp"
-        android:text="Topic" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabTopicWallpapers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wallpapers" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabTopicRingtones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ringtones" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabTopicNotifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notifications" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vpTopic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tabTopic"/>
 
 </RelativeLayout>

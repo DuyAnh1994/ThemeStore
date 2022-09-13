@@ -1,7 +1,6 @@
 package ai.ftech.themestore
 
-import android.content.Context
-import android.media.Image
+import ai.ftech.themestore.fragment.HomeFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,7 @@ import com.bumptech.glide.Glide
 
 class ImageAdapter(
     private var listImageUrls: MutableList<String>,
-    private var listContext: Context
+    private var listContext: HomeFragment
 ) : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageAdapter.ImageViewHolder {
