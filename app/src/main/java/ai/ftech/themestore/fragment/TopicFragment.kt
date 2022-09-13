@@ -1,4 +1,4 @@
-package ai.ftech.themestore.fragment.topicFragment
+package ai.ftech.themestore.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,18 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import ai.ftech.themestore.R
 import ai.ftech.themestore.ViewPagerAdapter
-import ai.ftech.themestore.fragment.HomeFragment
 import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.ViewPagerOnTabSelectedListener
 
 
 class TopicFragment : Fragment() {
     private lateinit var tabLayout: TabLayout
     private lateinit var vpTopic : ViewPager
     private lateinit var vpTopicAdapter: ViewPagerAdapter
-    private var wallpapersFragment : Fragment = WallpapersFragment()
-    private var ringtonesFragment : Fragment = RingtonesFragment()
-    private var notificationsFragment : Fragment = NotificationsFragment()
+    private var wallpapersFragment : WallpapersFragment = WallpapersFragment()
+    private var ringtonesFragment : RingtonesFragment = RingtonesFragment()
+    private var notificationSoundsFragment : NotificationSoundsFragment = NotificationSoundsFragment()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -31,28 +32,27 @@ class TopicFragment : Fragment() {
         vpTopic = view.findViewById(R.id.vpTopic)
 
         vpTopicAdapter =  ViewPagerAdapter(childFragmentManager)
-        tabLayout.setupWithViewPager(vpTopic)
 
         vpTopicAdapter.addFragment(0, wallpapersFragment)
         vpTopicAdapter.addFragment(1, ringtonesFragment)
-        vpTopicAdapter.addFragment(2, notificationsFragment)
+        vpTopicAdapter.addFragment(2, notificationSoundsFragment)
 
         vpTopic.adapter = vpTopicAdapter
+        tabLayout.setOnTabSelectedListener(object : TabLayout.ViewPagerOnTabSelectedListener(vpTopic) {
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                vpTopic.setCurrentItem(tab!!.position)
+            }
 
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                vpTopic.currentItem = tabLayout.selectedTabPosition
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                super.onTabSelected(tab)
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
-                TODO("Not yet implemented")
+                super.onTabUnselected(tab)
             }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-                TODO("Not yet implemented")
-            }
-
         })
-    }
+        
 
+
+    }
 }

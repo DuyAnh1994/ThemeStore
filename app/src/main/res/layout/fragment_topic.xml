@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/topic_fra"
-    tools:context=".fragment.topicFragment.TopicFragment">
-
+    tools:context=".fragment.TopicFragment">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabTopic"
@@ -18,26 +17,31 @@
             android:id="@+id/tabTopicWallpapers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
             android:text="Wallpapers" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tabTopicRingtones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
             android:text="Ringtones" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tabTopicNotifications"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Notifications" />
+            android:backgroundTint="@color/black"
+            android:text="Notification" />
 
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vpTopic"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/tabTopic"/>
+        android:layout_height="match_parent"
+        android:layout_above="@id/tabTopic">
+
+    </androidx.viewpager.widget.ViewPager>
 
 </RelativeLayout>
