@@ -1,6 +1,7 @@
 package ai.ftech.themestore
 
 import ai.ftech.themestore.fragment.HomeFragment
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +28,7 @@ class ImageAdapter(
 
         Glide.with(listContext)
             .load(listImageUrls[position])
-            .override(800, 800)
+            .placeholder(R.drawable.ic_image)
             .into(holder.ivImage)
     }
 

@@ -3,10 +3,12 @@ package ai.ftech.themestore
 import ai.ftech.themestore.fragment.AccountFragment
 import ai.ftech.themestore.fragment.HomeFragment
 import ai.ftech.themestore.fragment.SearchFragment
-import ai.ftech.themestore.fragment.topicFragment.TopicFragment
+import ai.ftech.themestore.fragment.TopicFragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.MotionEvent
+import android.view.View
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
@@ -28,11 +30,17 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView = findViewById(R.id.bottomNavigationMenu)
 
         vpHome = findViewById(R.id.vpHome)
-        vpHomeAdapter.addFragment(0, homeFragment)
-        vpHomeAdapter.addFragment(1, topicFragment)
-        vpHomeAdapter.addFragment(2, searchFragment)
-        vpHomeAdapter.addFragment(3, accountFragment)
+        vpHomeAdapter.addTab(TabTopic(homeFragment))
+        vpHomeAdapter.addTab(TabTopic(topicFragment))
+        vpHomeAdapter.addTab(TabTopic(searchFragment))
+        vpHomeAdapter.addTab( TabTopic(accountFragment))
 
+        vpHome.setOnTouchListener(object : View.OnTouchListener{
+            override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
+                return true
+            }
+
+        })
 
         vpHome.adapter = vpHomeAdapter
         bottomNavigationView.setOnItemSelectedListener(object : NavigationBarView.OnItemSelectedListener {
@@ -60,20 +68,3 @@ class MainActivity : AppCompatActivity() {
         })
    }
 }
-
-
-
-
-
-
-
-
-
-//        vpHome = findViewById(R.id.vpHome)
-//      //  vpAdapter = ViewPagerAdapter(supportFragmentManager, FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
-//        vpAdapter = ViewPagerAdapter(supportFragmentManager)
-//        vpHome.adapter = vpAdapter
-
-
-
-

@@ -4,6 +4,11 @@
     <string name="action_topic">Topic</string>
     <string name="action_search">Search</string>
     <string name="action_account">Account</string>
+    <string name="action_wallpapers">Wallpapers</string>
+    <string name="action_ringtones">Ringtones</string>
+    <string name="action_notificationSounds">NotificationSounds</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="wallpapers_fragment">WallpapersFragment</string>
+    <string name="ringtones_fragment">RingtonesFragment</string>
+    <string name="notifications_fragment">NotificationsFragment</string>
 </resources>
