@@ -60,20 +60,3 @@ class MainActivity : AppCompatActivity() {
         })
    }
 }
-
-
-
-
-
-
-
-
-
-//        vpHome = findViewById(R.id.vpHome)
-//      //  vpAdapter = ViewPagerAdapter(supportFragmentManager, FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
-//        vpAdapter = ViewPagerAdapter(supportFragmentManager)
-//        vpHome.adapter = vpAdapter
-
-
-
-
