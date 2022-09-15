@@ -12,7 +12,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_image"
-            android:text="hình biểu cảm"
+            android:text="Hình biểu cảm"
+            android:textAllCaps="false"
 
 
             />
