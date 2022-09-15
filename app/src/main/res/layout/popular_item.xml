@@ -8,19 +8,22 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/ivIdeasSearch"
+            android:id="@+id/ivPopularSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_image"/>
+            android:background="@drawable/ic_popular_item"
+            android:textAllCaps="false"
+            />
+
         <TextView
-            android:id="@+id/tvIdeasSearch"
+            android:id="@+id/tvPopularSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hình biểu cảm"
-            android:gravity="center"
             android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="Ảnh vintage"
             android:textColor="@color/white"
-            android:textSize="25dp"/>
+            android:textSize="25dp" />
 
     </RelativeLayout>
 
