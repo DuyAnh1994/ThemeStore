@@ -29,6 +29,7 @@
             android:layout_marginTop="15dp"
             android:gravity="center"
             android:text="Ideas for you"
+            android:layout_marginBottom="5dp"
             android:textColor="@color/white"
             android:textSize="20dp" />
 
@@ -43,6 +44,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Popular on ThemeStore"
+            android:layout_marginBottom="5dp"
             android:textColor="@color/white"
             android:textSize="20dp" />
 

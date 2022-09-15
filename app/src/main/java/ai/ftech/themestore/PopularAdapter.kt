@@ -23,11 +23,8 @@ class PopularAdapter(
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         var image = listImageUrls.get(position)
-        if(image != null){
-            return
-        }
 
-        Glide.with(context).load(listImageUrls[position]).into(holder.ivPopularSearch)
+        holder.bindData(image)
     }
 
     override fun getItemCount(): Int {
@@ -38,12 +35,21 @@ class PopularAdapter(
             return 0
     }
 
-    class ImageViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
-        var ivPopularSearch : ImageView
+    inner class ImageViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+        private var ivPopularSearch : ImageView
         private var tvPopularSearch : TextView
         init {
             ivPopularSearch = itemView.findViewById(R.id.ivPopularSearch)
             tvPopularSearch = itemView.findViewById(R.id.tvPopularSearch)
         }
+
+        fun bindData(itemsSearch: ItemsSearch){
+            tvPopularSearch.text = itemsSearch.text
+
+            Glide.with(context)
+                .load(itemsSearch.urlImage)
+                .into(ivPopularSearch)
+        }
+
     }
 }

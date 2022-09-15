@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/black">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:padding="4dp">
 
         <ImageView
             android:id="@+id/ivPopularSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_popular_item"
+            android:src="@drawable/ic_popular_item"
             android:textAllCaps="false"
             />
 
@@ -23,6 +26,7 @@
             android:gravity="center"
             android:text="Ảnh vintage"
             android:textColor="@color/white"
+            android:textStyle="bold|italic"
             android:textSize="25dp" />
 
     </RelativeLayout>
