@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import ai.ftech.themestore.R
 import ai.ftech.themestore.ImageAdd
+import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -28,12 +29,17 @@ class HomeFragment : Fragment() {
         return view
     }
 
+    @SuppressLint("UseRequireInsteadOfGet")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         rvImage = view.findViewById(R.id.rvImage)
         swipeRefreshLayout = view.findViewById(R.id.swipeRefresh)
 
         val images : MutableList<String> =AddImage.listImage()
-        imageAdapter = ImageAdapter(images, this)
+
+        if(activity != null){
+            imageAdapter = ImageAdapter(images, activity!!)
+        }
+
         rvImage.adapter = imageAdapter
 
         var staggeredGridLayoutManager =

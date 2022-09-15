@@ -21,7 +21,7 @@
 
 
     <TextView
-        android:id="@+id/tvIdeaSearch"
+        android:id="@+id/tvIdeasSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ideas for you"
@@ -31,7 +31,7 @@
         android:gravity="center"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
+        android:id="@+id/rvIdeasSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -43,7 +43,9 @@
         android:textColor="@color/white"
         android:textSize="20dp"
         android:gravity="center"/>
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPopularSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

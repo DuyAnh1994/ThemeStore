@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 
 class ImageAdapter(
     private var listImageUrls: MutableList<String>,
-    private var listContext: HomeFragment
+    private var context: Context
 ) : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageAdapter.ImageViewHolder {
@@ -26,7 +26,7 @@ class ImageAdapter(
             return
         }
 
-        Glide.with(listContext)
+        Glide.with(context)
             .load(listImageUrls[position])
             .placeholder(R.drawable.ic_image)
             .into(holder.ivImage)
