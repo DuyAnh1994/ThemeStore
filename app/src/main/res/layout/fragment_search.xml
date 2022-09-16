@@ -22,34 +22,8 @@
             android:textColorHint="@color/black"
             android:textSize="20dp"/>
 
-        <TextView
-            android:id="@+id/tvSearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:text="Ideas for you"
-            android:layout_marginBottom="5dp"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvIdeasSearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/tvPopularSearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Popular on ThemeStore"
-            android:layout_marginBottom="5dp"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvPopularSearch"
+            android:id="@+id/rvSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

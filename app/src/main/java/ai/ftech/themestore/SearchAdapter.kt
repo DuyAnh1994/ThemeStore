@@ -2,6 +2,7 @@ package ai.ftech.themestore
 
 import ai.ftech.themestore.model.ItemsSearch
 import ai.ftech.themestore.model.ItemsSearchHolder
+import ai.ftech.themestore.model.TitleSearch
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -9,37 +10,40 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 class SearchAdapter(
     private var listImageUrls: MutableList<ItemsSearch>,
+    private var listTitle : MutableList<TitleSearch>,
     private var context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     companion object{
-        private const val ideas_type = 0
-        private const val popular_type = 1
+        private const val image_type = 0
+        private const val title_type = 1
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        if(viewType == 0){
-            val viewIdea : View = LayoutInflater.from(parent.context).inflate(R.layout.ideas_item, parent, false)
-            return ImageIdeasViewHolder(viewIdea)
+        if(image_type == 0){
+            val imageView : View = LayoutInflater.from(parent.context).inflate(R.layout.ideas_item, parent, false)
+            return ImageViewHolder(imageView)
         }
         else{
-            val viewPopular: View = LayoutInflater.from(parent.context).inflate(R.layout.popular_item, parent, false)
-            return ImagePopularViewHolder(viewPopular)
+            val titleView: View = LayoutInflater.from(parent.context).inflate(R.layout.popular_item, parent, false)
+            return TitleViewHolder(titleView)
         }
 
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         var image = listImageUrls.get(position)
+        val title = listTitle.get(position)
         holder.apply {
             when(holder){
-                is ImageIdeasViewHolder -> holder.bindDataIdeas(image)
-                is ImagePopularViewHolder -> holder.bindDataPopular(image)
+                is TitleViewHolder -> holder.bindDataTitle(title)
+                is ImageViewHolder -> holder.bindDataImage(image)
             }
         }
     }
@@ -53,12 +57,12 @@ class SearchAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return when(position){
-            in 1..8 -> ideas_type
-            else -> popular_type
+            0,5  -> title_type
+            else -> image_type
         }
     }
 
-    inner class ImageIdeasViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
       private  var ivIdeasSearch : ImageView
       private  var tvIdeasSearch :TextView
 
@@ -67,7 +71,7 @@ class SearchAdapter(
             tvIdeasSearch = itemView.findViewById(R.id.tvIdeasSearch)
         }
 
-        fun bindDataIdeas(itemsSearch: ItemsSearch){
+        fun bindDataImage(itemsSearch: ItemsSearch){
             tvIdeasSearch.text = itemsSearch.text
 
             Glide.with(context)
@@ -76,20 +80,17 @@ class SearchAdapter(
         }
     }
 
-    inner class ImagePopularViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        private var ivPopularSearch : ImageView
-        private var tvPopularSearch : TextView
+    class TitleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        private val tvTitleSearch : TextView
         init {
-            ivPopularSearch = itemView.findViewById(R.id.ivPopularSearch)
-            tvPopularSearch = itemView.findViewById(R.id.tvPopularSearch)
+            tvTitleSearch = itemView.findViewById(R.id.tvTitleSearch)
         }
 
-        fun bindDataPopular(itemsSearch: ItemsSearch){
-            tvPopularSearch.text = itemsSearch.text
-
-            Glide.with(context)
-                .load(itemsSearch.urlImage)
-                .into(ivPopularSearch)
+        fun bindDataTitle(titleSearch: TitleSearch){
+            tvTitleSearch.text = titleSearch.textSearch
         }
     }
+
 }
+
+
