@@ -19,7 +19,6 @@ class SearchFragment : Fragment() {
     private lateinit var ideasAdapter: IdeasAdapter
     private lateinit var popularAdapter: PopularAdapter
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view : View = inflater.inflate(R.layout.fragment_search, container, false)
@@ -31,6 +30,7 @@ class SearchFragment : Fragment() {
 
         rvIdeasSearch = view.findViewById(R.id.rvIdeasSearch)
         rvPopularSearch = view.findViewById(R.id.rvPopularSearch)
+
 
         val imagesIdea : MutableList<ItemsSearch> = Ideas.listIdea()
         if(activity != null){
@@ -47,7 +47,6 @@ class SearchFragment : Fragment() {
         rvPopularSearch.adapter = popularAdapter
         var layoutManager2 = GridLayoutManager(context,2)
         rvPopularSearch.layoutManager = layoutManager2
-
     }
 
 }
