@@ -37,6 +37,7 @@ class SearchFragment : Fragment() {
         if(activity != null){
             searchAdapter = SearchAdapter(title,image, context!!)
         }
+        rvSearch.setHasFixedSize(true)
         rvSearch.adapter = searchAdapter
         var layoutManager = GridLayoutManager(context,2)
 

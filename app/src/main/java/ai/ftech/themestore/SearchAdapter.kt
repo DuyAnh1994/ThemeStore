@@ -24,7 +24,7 @@ class SearchAdapter(
         if(viewType == image_type){
             val imageView : View = LayoutInflater
                 .from(parent.context)
-                .inflate(R.layout.ideas_item, parent, false)
+                .inflate(R.layout.image_search_item, parent, false)
             return ImageViewHolder(imageView)
         }
         else{
@@ -69,14 +69,14 @@ class SearchAdapter(
                 tvIdeasSearch.text = listImageUrls.get(position-1).text
 
                 Glide.with(context)
-                    .load(listImageUrls.get(position-1).urlImage)
+                    .load(listImageUrls.get(position-1).urlImage).fitCenter()
                     .into(ivIdeasSearch)
             }
             else if(position>9){
                 tvIdeasSearch.text = listImageUrls.get(position-2).text
 
                 Glide.with(context)
-                    .load(listImageUrls.get(position-2).urlImage)
+                    .load(listImageUrls.get(position-2).urlImage).fitCenter()
                     .into(ivIdeasSearch)
             }
         }
