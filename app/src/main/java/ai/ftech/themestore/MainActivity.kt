@@ -4,7 +4,6 @@ import ai.ftech.themestore.fragment.AccountFragment
 import ai.ftech.themestore.fragment.HomeFragment
 import ai.ftech.themestore.fragment.SearchFragment
 import ai.ftech.themestore.fragment.TopicFragment
-import ai.ftech.themestore.model.TabTopic
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem

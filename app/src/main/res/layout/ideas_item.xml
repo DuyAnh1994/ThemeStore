@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/black">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black"
         android:padding="4dp">
 
         <ImageView
             android:id="@+id/ivIdeasSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_image"
-            android:scaleType="fitCenter"/>
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_image" />
+
         <TextView
             android:id="@+id/tvIdeasSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hình biểu cảm"
-            android:gravity="center"
             android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="Hình biểu cảm"
             android:textColor="@color/white"
-            android:textStyle="bold|italic"
-            android:textSize="25dp"/>
+            android:textSize="25dp"
+            android:textStyle="bold|italic" />
 
     </RelativeLayout>
 

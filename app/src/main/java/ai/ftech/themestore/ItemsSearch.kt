@@ -1,6 +1,4 @@
-package ai.ftech.themestore.model
-
-import org.w3c.dom.Text
+package ai.ftech.themestore
 
 data class ItemsSearch(
     val urlImage: String,

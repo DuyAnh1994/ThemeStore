@@ -1,4 +1,4 @@
-package ai.ftech.themestore.model
+package ai.ftech.themestore
 
 import android.widget.ImageView
 import android.widget.TextView

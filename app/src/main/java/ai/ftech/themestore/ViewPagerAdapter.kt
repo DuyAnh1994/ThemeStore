@@ -1,6 +1,5 @@
 package ai.ftech.themestore
 
-import ai.ftech.themestore.model.TabTopic
 import androidx.fragment.app.*
 
 class ViewPagerAdapter(fragmentManager: FragmentManager) :FragmentPagerAdapter(fragmentManager) {

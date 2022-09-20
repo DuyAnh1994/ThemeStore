@@ -1,22 +1,17 @@
 package ai.ftech.themestore
 
-import ai.ftech.themestore.model.ItemsSearch
-import ai.ftech.themestore.model.ItemsSearchHolder
-import ai.ftech.themestore.model.TitleSearch
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 class SearchAdapter(
+    private var listTitle : MutableList<String>,
     private var listImageUrls: MutableList<ItemsSearch>,
-    private var listTitle : MutableList<TitleSearch>,
     private var context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
@@ -26,38 +21,36 @@ class SearchAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        if(image_type == 0){
-            val imageView : View = LayoutInflater.from(parent.context).inflate(R.layout.ideas_item, parent, false)
+        if(viewType == image_type){
+            val imageView : View = LayoutInflater
+                .from(parent.context)
+                .inflate(R.layout.ideas_item, parent, false)
             return ImageViewHolder(imageView)
         }
         else{
-            val titleView: View = LayoutInflater.from(parent.context).inflate(R.layout.popular_item, parent, false)
+            val titleView: View = LayoutInflater
+                .from(parent.context)
+                .inflate(R.layout.title_search_item, parent, false)
             return TitleViewHolder(titleView)
         }
-
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        var image = listImageUrls.get(position)
-        val title = listTitle.get(position)
         holder.apply {
             when(holder){
-                is TitleViewHolder -> holder.bindDataTitle(title)
-                is ImageViewHolder -> holder.bindDataImage(image)
+                is TitleViewHolder -> holder.bindDataTitle(position)
+                is ImageViewHolder -> holder.bindDataImage(position)
             }
         }
     }
 
     override fun getItemCount(): Int {
-        if(listImageUrls != null){
-            return listImageUrls.size
-        }
-        return 0
+        return listImageUrls.size + listTitle.size
     }
 
     override fun getItemViewType(position: Int): Int {
         return when(position){
-            0,5  -> title_type
+            0, 9 -> title_type
             else -> image_type
         }
     }
@@ -71,26 +64,41 @@ class SearchAdapter(
             tvIdeasSearch = itemView.findViewById(R.id.tvIdeasSearch)
         }
 
-        fun bindDataImage(itemsSearch: ItemsSearch){
-            tvIdeasSearch.text = itemsSearch.text
+        fun bindDataImage(position: Int){
+            if(position<9){
+                tvIdeasSearch.text = listImageUrls.get(position-1).text
 
-            Glide.with(context)
-                .load(itemsSearch.urlImage)
-                .into(ivIdeasSearch)
+                Glide.with(context)
+                    .load(listImageUrls.get(position-1).urlImage)
+                    .into(ivIdeasSearch)
+            }
+            else if(position>9){
+                tvIdeasSearch.text = listImageUrls.get(position-2).text
+
+                Glide.with(context)
+                    .load(listImageUrls.get(position-2).urlImage)
+                    .into(ivIdeasSearch)
+            }
         }
     }
 
-    class TitleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    inner class TitleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         private val tvTitleSearch : TextView
         init {
             tvTitleSearch = itemView.findViewById(R.id.tvTitleSearch)
         }
 
-        fun bindDataTitle(titleSearch: TitleSearch){
-            tvTitleSearch.text = titleSearch.textSearch
+        fun bindDataTitle(position: Int){
+            if(position==0){
+                tvTitleSearch.text = listTitle.get(position)
+            }
+            else if(position==9){
+                tvTitleSearch.text = listTitle.get(position-8)
+            }
+
         }
     }
-
 }
+
 
 
