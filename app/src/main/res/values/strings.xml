@@ -11,4 +11,6 @@
     <string name="wallpapers_fragment">WallpapersFragment</string>
     <string name="ringtones_fragment">RingtonesFragment</string>
     <string name="notifications_fragment">NotificationsFragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

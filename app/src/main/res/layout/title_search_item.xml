@@ -10,7 +10,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Ideas for you"
+        android:fontFamily="monospace"
+        android:textStyle="bold|italic"
         android:textColor="@color/black"
-        android:textSize="20dp" />
+        android:textSize="23dp" />
 
 </LinearLayout>

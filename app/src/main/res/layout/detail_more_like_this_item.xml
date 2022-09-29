@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_marginTop="3dp"
+    android:paddingHorizontal="3dp"
+    android:background="@drawable/shape_frame_detail"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:gravity="center"
+        android:textSize="23dp"
+        android:textStyle="bold"
+        android:text="Thêm ghim tương tự"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMoreLikeThisDetail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

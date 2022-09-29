@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    tools:context=".fragment.TopicFragment">
+    tools:context=".topic.TopicFragment">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabTopic"
@@ -18,8 +18,7 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vpTopic"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#C3B430">
+        android:layout_height="match_parent">
 
     </androidx.viewpager.widget.ViewPager>
 

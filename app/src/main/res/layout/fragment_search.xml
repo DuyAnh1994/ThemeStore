@@ -13,13 +13,16 @@
         <EditText
             android:id="@+id/edSearch"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_height="40dp"
             android:layout_gravity="top"
-            android:background="#E3E1E0"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/shape_bt_login3"
             android:drawableLeft="@drawable/ic_search"
             android:hint=" Search ThemeStore"
             android:textColorHint="@color/black"
-            android:textSize="20dp"/>
+            android:textSize="20dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSearch"

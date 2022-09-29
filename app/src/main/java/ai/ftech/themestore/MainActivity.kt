@@ -1,9 +1,9 @@
 package ai.ftech.themestore
 
 import ai.ftech.themestore.fragment.AccountFragment
-import ai.ftech.themestore.fragment.HomeFragment
+import ai.ftech.themestore.home.HomeFragment
 import ai.ftech.themestore.fragment.SearchFragment
-import ai.ftech.themestore.fragment.TopicFragment
+import ai.ftech.themestore.topic.TopicFragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem

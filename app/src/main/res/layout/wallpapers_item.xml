@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -13,17 +12,17 @@
         app:cardElevation="8dp">
 
         <ImageView
-            android:id="@+id/ivImage"
+            android:id="@+id/ivImageW"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:padding="4dp"
-            android:src="@drawable/ic_image" />
+            android:src="@drawable/ic_wallpapers_item" />
     </androidx.cardview.widget.CardView>
 
+
     <ImageView
-        android:visibility="gone"
-        android:id="@+id/ivImageSelect"
+        android:id="@+id/ivImageSelectW"
         android:layout_width="25dp"
         android:layout_height="20dp"
         android:layout_gravity="right"

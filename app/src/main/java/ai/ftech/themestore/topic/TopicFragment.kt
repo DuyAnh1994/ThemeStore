@@ -1,4 +1,4 @@
-package ai.ftech.themestore.fragment
+package ai.ftech.themestore.topic
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import ai.ftech.themestore.R
 import ai.ftech.themestore.TabTopic
 import ai.ftech.themestore.ViewPagerAdapter
+import ai.ftech.themestore.fragment.NotificationsFragment
+import ai.ftech.themestore.topic.ringtones.RingtonesFragment
+import ai.ftech.themestore.topic.wallpapers.WallpapersFragment
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 

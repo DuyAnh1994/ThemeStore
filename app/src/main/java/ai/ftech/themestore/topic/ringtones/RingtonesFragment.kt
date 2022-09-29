@@ -1,4 +1,4 @@
-package ai.ftech.themestore.fragment
+package ai.ftech.themestore.topic.ringtones
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import ai.ftech.themestore.R
 
-class WallpapersFragment : Fragment() {
 
+class RingtonesFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-
-        return inflater.inflate(R.layout.fragment_wallpapers, container, false)
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_ringtones, container, false)
     }
 
 }
