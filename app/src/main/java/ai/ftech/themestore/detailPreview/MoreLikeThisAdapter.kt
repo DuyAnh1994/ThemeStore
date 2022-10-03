@@ -1,12 +1,12 @@
 package ai.ftech.themestore.detailPreview
 
 import ai.ftech.themestore.R
-import ai.ftech.themestore.home.ImageHome
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterInside
@@ -24,12 +24,12 @@ class MoreLikeThisAdapter(
     }
 
     override fun onBindViewHolder(holder: MoreLikeThisViewHolder, position: Int) {
-        val itemMore = listUrlImageMore.get(position)
-        var requestOptions : RequestOptions = RequestOptions()
-        requestOptions = requestOptions.transform(CenterInside(), RoundedCorners(60))
+        val itemMore = listUrlImageMore[position]
+        var requestOptions = RequestOptions()
+        requestOptions = requestOptions.transform(CenterInside(), RoundedCorners(40))
         Glide.with(context).load(itemMore.url).apply(requestOptions).into(holder.ivImageMore)
-
     }
+
 
     override fun getItemCount(): Int {
         return listUrlImageMore.size
@@ -37,10 +37,12 @@ class MoreLikeThisAdapter(
 
     class MoreLikeThisViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var ivImageMore : ImageView
+        private var tvTitleMore : TextView
         private var ivImageSelectMore : ImageView
 
         init {
             ivImageMore = itemView.findViewById(R.id.ivImageMore)
+            tvTitleMore = itemView.findViewById(R.id.tvTitleMore)
             ivImageSelectMore = itemView.findViewById(R.id.ivImageSelectMore)
         }
     }

@@ -1,12 +1,15 @@
 package ai.ftech.themestore.detailPreview
 
-class Image{
-   var urlImage: String = ""
-   var title : String= ""
-   var content : String= ""
-   var urlAvatar : String= ""
-   var nameA: String= ""
-   var follower : String= ""
+import java.io.Serializable
+
+class Image : Serializable {
+    var urlImage: String = ""
+    var urlAvatar : String= "https://i.pinimg.com/236x/e6/89/47/e689476d68157a3b33961489db179a81.jpg"
+    var nameA: String= "Hehe"
+    var follower : String= "173k follower"
+    var title : String= "Day la title"
+    var content : String= "Day la content"
+
+    var firstItem : Boolean = false
+    var lastItem : Boolean = false
 }
-
-

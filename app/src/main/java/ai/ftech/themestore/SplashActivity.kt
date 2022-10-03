@@ -24,19 +24,8 @@ class SplashActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, 3000) //delaying 3 seconds to open MainActivity
-
-
-//        val ivClick : ImageView = findViewById(R.id.ivClick)
-//        ivClick.setOnClickListener(){
-//            action()
-//        }
+        }, 2000) //delaying 3 seconds to open MainActivity
     }
-//    fun action(){
-//        val wallpaerManager = WallpaperManager.getInstance(applicationContext)
-//        val ins : InputStream = URL("https://media1.nguoiduatin.vn/media/nguyen-ngoc-hoai-thanh/2021/12/28/duong-mich-tiet-lo-ly-do-ho-hung-chuyen-tinh-yeu-sau-do-vo-hon-nhan.jpg").openStream()
-//        wallpaerManager.setStream(ins)
-//    }
 }
 
 

@@ -13,4 +13,11 @@
     <string name="notifications_fragment">NotificationsFragment</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="save">Lưu</string>
+    <string name="access">Truy cập</string>
+    <string name="follow">Theo dõi</string>
+    <string name="titleComment">Nhận xét</string>
+    <string name="comment">Bạn thích Ghim này? Hãy cho mình biết!</string>
+    <string name="enterComment">Thêm nhận xét</string>
+
 </resources>

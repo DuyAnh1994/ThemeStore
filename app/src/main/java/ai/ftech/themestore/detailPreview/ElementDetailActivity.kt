@@ -1,36 +1,50 @@
 package ai.ftech.themestore.detailPreview
 
 import ai.ftech.themestore.R
-import androidx.appcompat.app.AppCompatActivity
+import ai.ftech.themestore.home.ImageHome
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.widget.ImageButton
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 class ElementDetailActivity : AppCompatActivity() {
-    private lateinit var rvDetailPreview : RecyclerView
+    private lateinit var rvDetailPreview: RecyclerView
     private lateinit var elementDetailAdapter: ElementDetailAdapter
+    private lateinit var imageDetail: Image
+    private lateinit var imageMoreDetail: Image
+    private lateinit var ibShare: ImageButton
+
+    companion object {
+        private const val TAG = "123"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_element_detail)
 
-        rvDetailPreview = findViewById(R.id.rvDetailPreview)
-
-        val imageDetail = Image().apply {
-            urlImage = "https://i.pinimg.com/236x/fa/92/35/fa92357acf0eb53e0e4d4170a2f00cb0.jpg"
-            urlAvatar = "https://i.pinimg.com/236x/fa/92/35/fa92357acf0eb53e0e4d4170a2f00cb0.jpg"
-            follower = "173k người theo dõi"
-            title = "Meme là gì?"
-            content = "Meme là những hình ảnh đáng yêu"
-            nameA = "Meme"
+        val extras: Bundle? = intent.extras
+        if (extras != null) {
+            imageDetail = extras.getSerializable("thomnt") as Image
         }
 
-        val listMoreLikeThis : MutableList<ElementImageMore> = ListElementImageMore.listElementImageMore()
 
-        rvDetailPreview.adapter = ElementDetailAdapter(imageDetail,listMoreLikeThis, this)
+        rvDetailPreview = findViewById(R.id.rvDetailPreview)
 
-        val layoutManager = LinearLayoutManager(this)
-        rvDetailPreview.layoutManager =  layoutManager
+        val element: MutableList<Image> = ImageHome.listElement()
+
+//        for(i in 0..element.size - 1){
+//            Log.d(TAG, "onCreate: ${element[i].firstItem}  ${element[i].lastItem} ")
+//        }
+
+        elementDetailAdapter = ElementDetailAdapter(imageDetail, this)
+        elementDetailAdapter.resetData(element)
+        rvDetailPreview.adapter = elementDetailAdapter
+
+        val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
+        rvDetailPreview.layoutManager = layoutManager
+
+
     }
 
 }

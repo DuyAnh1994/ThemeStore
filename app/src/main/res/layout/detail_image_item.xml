@@ -21,8 +21,8 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_marginBottom="-28dp"
-                app:cardCornerRadius="28dp"
+                android:layout_marginBottom="-25dp"
+                app:cardCornerRadius="25dp"
                 android:layout_height="wrap_content">
                 <ImageView
                     android:id="@+id/ivImageDetail"
@@ -43,7 +43,7 @@
                 android:id="@+id/ivSelect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignRight="@+id/ivBack"
+                android:layout_alignEnd="@+id/ivBack"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="15dp"
@@ -73,23 +73,23 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="9dp"
+                    android:layout_marginStart="9dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tvAccountName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Meme"
+                        tools:text="Meme"
                         android:textColor="@color/black"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvFollowersDetail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="73k người theo dõi "
+                        tools:text="73k người theo dõi "
                         android:textColor="@color/black" />
                 </LinearLayout>
 
@@ -97,9 +97,9 @@
                     android:id="@+id/btFllow"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="75dp"
+                    android:layout_marginStart="100dp"
                     android:background="@drawable/shape_bt_grey"
-                    android:text="Theo dõi"
+                    android:text="@string/follow"
                     android:textAllCaps="false"
                     android:textColor="@color/black" />
 
@@ -116,19 +116,19 @@
                 android:id="@+id/tvTitleContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Meme là gì? 300+ meme hài, chất nhất quả đất để bạn comment dạo thả ga - BlogAnChoi"
+                tools:text="Meme là gì? 300+ meme hài, chất nhất quả đất để bạn comment dạo thả ga - BlogAnChoi"
                 android:textColor="@color/black"
-                android:textSize="23dp"
+                android:textSize="23sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Meme là gì? 300+ meme hài, chất nhất quả đất để bạn comment dạo thả ga - BlogAnChoi
+                tools:text="Meme là gì? 300+ meme hài, chất nhất quả đất để bạn comment dạo thả ga - BlogAnChoi
 Meme là gì mà lại được giới trẻ toàn thế giới cực kỳ ưa thích và sử dụng thường xuyên? Cùng BlogAnChoi tìm hiểu và lưu ngay 300+ hình meme hài, meme cute..."
                 android:textColor="@color/black"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -145,7 +145,7 @@ Meme là gì mà lại được giới trẻ toàn thế giới cực kỳ ưa t
                 android:layout_marginStart="93dp"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/shape_bt_grey"
-                android:text="Truy cập"
+                android:text="@string/access"
                 android:textAllCaps="false"
                 app:layout_constraintBaseline_toBaselineOf="@+id/btSaveDetail"
                 app:layout_constraintEnd_toStartOf="@+id/btSaveDetail"
@@ -159,14 +159,14 @@ Meme là gì mà lại được giới trẻ toàn thế giới cực kỳ ưa t
                 android:layout_alignParentTop="true"
                 android:layout_marginEnd="44dp"
                 android:background="@drawable/shape_bt_login4"
-                android:text="Lưu"
+                android:text="@string/save"
                 android:textAllCaps="false"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton"
+                app:layout_constraintEnd_toStartOf="@+id/ibShare"
                 app:layout_constraintStart_toEndOf="@+id/btAccessDetail"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/ibShare"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentBottom="true"
@@ -187,6 +187,7 @@ Meme là gì mà lại được giới trẻ toàn thế giới cực kỳ ưa t
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
         android:background="@drawable/shape_frame_detail"
         android:orientation="vertical"
         android:paddingHorizontal="15dp">
@@ -195,16 +196,16 @@ Meme là gì mà lại được giới trẻ toàn thế giới cực kỳ ưa t
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Nhận xét"
+            android:text="@string/titleComment"
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Bạn thích Ghim này? Hãy cho Meme biết!"
+            android:text="@string/comment"
             android:textColor="@color/black" />
 
         <LinearLayout
@@ -224,10 +225,11 @@ Meme là gì mà lại được giới trẻ toàn thế giới cực kỳ ưa t
                 android:id="@+id/edtComment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:background="@drawable/shape_botton_border"
                 android:hint="Thêm nhận xét"
-                android:paddingStart="10dp" />
+                android:paddingStart="10dp"
+                tools:ignore="RtlSymmetry" />
         </LinearLayout>
 
     </LinearLayout>

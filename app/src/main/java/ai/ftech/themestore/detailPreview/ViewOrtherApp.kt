@@ -21,15 +21,10 @@ class ViewOrtherApp : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         btAccessDetail  = view.findViewById(R.id.btAccessDetail)
-        btAccessDetail.setOnClickListener(object : View.OnClickListener{
-            override fun onClick(v: View?) {
-                goToUrl("https://quantrimang.com/cong-nghe/meme-la-gi-va-mot-so-meme-pho-bien-163106")
-            }
-        })
-    }
-    fun goToUrl(string: String){
-        val uri = Uri.parse(string)
-        val intent = Intent(Intent.ACTION_VIEW, uri)
-        startActivity(intent)
+//        btAccessDetail.setOnClickListener(object : View.OnClickListener{
+//            val uri = Uri.parse(Image().urlAccess)
+//            val intent = Intent(Intent.ACTION_VIEW, uri)
+//            context.startActivity(intent)
+//        })
     }
 }

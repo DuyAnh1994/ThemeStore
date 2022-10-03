@@ -1,6 +1,11 @@
 package ai.ftech.themestore.detailPreview
 
-data class ElementImageMore(
-    val url : String
-){
+import java.io.Serializable
+
+class ElementImageMore : Serializable{
+    var url : String = ""
+    var title : String = "Day la title"
+
+    var firstItem : Boolean = false
+    var lastItem : Boolean = false
 }

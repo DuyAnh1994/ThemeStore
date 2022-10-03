@@ -21,33 +21,34 @@ class HomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        var view: View = inflater.inflate(R.layout.fragment_home, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_home, container, false)
         return view
     }
 
-    @SuppressLint("UseRequireInsteadOfGet")
+    @SuppressLint("UseRequireInsteadOfGet", "NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         rvImage = view.findViewById(R.id.rvImage)
         swipeRefreshLayout = view.findViewById(R.id.swipeRefresh)
 
-        val element : MutableList<ImageH> = ImageHome.listElement()
+        val element : MutableList<Image> = ImageHome.listElement()
 
         if(activity != null){
-            imageAdapter = ImageAdapter(element, activity!!)
+            imageAdapter = ImageAdapter(activity!!)
         }
 
-        rvImage.adapter = imageAdapter
-
-        var staggeredGridLayoutManager =
+        val staggeredGridLayoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         rvImage.layoutManager = staggeredGridLayoutManager
 
-        imageAdapter.notifyDataSetChanged()
+        rvImage.adapter = imageAdapter
+        imageAdapter.resetData(element)
+
         swipeRefreshLayout.setOnRefreshListener {
             swipeRefreshLayout.isRefreshing = false
             Collections.shuffle(element, Random(System.currentTimeMillis()))
             imageAdapter.notifyDataSetChanged()
         }
+
     }
 }
 
