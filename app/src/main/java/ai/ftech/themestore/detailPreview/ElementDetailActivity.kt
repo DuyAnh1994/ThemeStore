@@ -1,7 +1,7 @@
 package ai.ftech.themestore.detailPreview
 
 import ai.ftech.themestore.R
-import ai.ftech.themestore.home.ImageHome
+import ai.ftech.themestore.home.ListImage
 import android.os.Bundle
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +12,6 @@ class ElementDetailActivity : AppCompatActivity() {
     private lateinit var rvDetailPreview: RecyclerView
     private lateinit var elementDetailAdapter: ElementDetailAdapter
     private lateinit var imageDetail: Image
-    private lateinit var imageMoreDetail: Image
     private lateinit var ibShare: ImageButton
 
     companion object {
@@ -31,7 +30,7 @@ class ElementDetailActivity : AppCompatActivity() {
 
         rvDetailPreview = findViewById(R.id.rvDetailPreview)
 
-        val element: MutableList<Image> = ImageHome.listElement()
+        val element: MutableList<Image> = ListImage.listElement()
 
 //        for(i in 0..element.size - 1){
 //            Log.d(TAG, "onCreate: ${element[i].firstItem}  ${element[i].lastItem} ")

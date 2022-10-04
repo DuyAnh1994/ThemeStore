@@ -1,13 +1,21 @@
-package ai.ftech.themestore.detailPreview
+package ai.ftech.themestore.home
 
-object ListElementImageMore {
-    fun listElementImageMore(): MutableList<ElementImageMore> {
-        val listImageMore: MutableList<ElementImageMore> = mutableListOf()
-        val listImage: MutableList<String> = mutableListOf(
+import ai.ftech.themestore.detailPreview.Image
+
+object ListImage {
+    fun listElement(): MutableList<Image> {
+        val listElementHome: MutableList<Image> = mutableListOf()
+        val listUrl: MutableList<String> = mutableListOf(
+            "https://i.pinimg.com/236x/f2/5a/e5/f25ae5445a02133d5407392a08c70644.jpg",
+            "https://i.pinimg.com/236x/ca/4e/72/ca4e7245293f384444e65544741ce787.jpg",
+            "https://i.pinimg.com/236x/cf/06/02/cf0602829d1185a4e5038e917d785589.jpg",
+            "https://i.pinimg.com/236x/52/97/79/529779ff57d814027d0bf1e6f57764ee.jpg",
+            "https://i.pinimg.com/564x/15/f4/e3/15f4e380c0ca4e093c6992d66c2ef0ab.jpg",
+
             "https://i.pinimg.com/236x/fa/92/35/fa92357acf0eb53e0e4d4170a2f00cb0.jpg",
             "https://i.pinimg.com/236x/7d/ce/10/7dce10fe06a8790d8fde5db84fa0fef0.jpg",
             "https://i.pinimg.com/236x/e6/89/47/e689476d68157a3b33961489db179a81.jpg",
-            "https://i.pinimg.com/236x/43/37/7b/43377b63e89966d322266357ab3f42b8.jpg",
+            "https://i.pinimg.com/236x/0c/0b/2a/0c0b2a55eb4e5d26240caf997e60e360.jpg",
             "https://i.pinimg.com/236x/e5/cf/34/e5cf343e8dbe5f3526d8b385446c1442.jpg",
 
             "https://i.pinimg.com/236x/af/04/fa/af04fad65ea06a814c8668c373b94348.jpg",
@@ -22,12 +30,6 @@ object ListElementImageMore {
             "https://i.pinimg.com/236x/3d/81/61/3d816155f3dc8b472d745bd7285c42d3.jpg",
             "https://i.pinimg.com/236x/a7/10/67/a7106735e0965396d6434f64d44d6274.jpg",
 
-            "https://i.pinimg.com/236x/f2/5a/e5/f25ae5445a02133d5407392a08c70644.jpg",
-            "https://i.pinimg.com/236x/ca/4e/72/ca4e7245293f384444e65544741ce787.jpg",
-            "https://i.pinimg.com/236x/cf/06/02/cf0602829d1185a4e5038e917d785589.jpg",
-            "https://i.pinimg.com/236x/52/97/79/529779ff57d814027d0bf1e6f57764ee.jpg",
-            "https://i.pinimg.com/564x/15/f4/e3/15f4e380c0ca4e093c6992d66c2ef0ab.jpg",
-
             "https://i.pinimg.com/236x/c1/f9/47/c1f94730a71def6ae34ff2221051d523.jpg",
             "https://i.pinimg.com/236x/08/b8/d4/08b8d444dfe974673f130e41d3a60227.jpg",
             "https://i.pinimg.com/236x/8e/40/0b/8e400b98d24e70651fb654401be901f0.jpg",
@@ -39,19 +41,18 @@ object ListElementImageMore {
             "https://i.pinimg.com/236x/fa/e5/50/fae5503352eb3050a2430dab469f80b3.jpg"
         )
 
-        for (i in 0..listImage.size - 1) {
-            listImageMore.add(ElementImageMore().apply {
-                url = listImage[i]
+        for (i in 0 until listUrl.size) {
+            val image = Image().apply {
+                urlImage = listUrl[i]
                 if (i == 0){
                     firstItem = true
                 }
-                else if (i == listImage.size - 1) {
+                else if (i == listUrl.size - 1) {
                     lastItem = true
                 }
-            })
+            }
+            listElementHome.add(image)
         }
-
-        return listImageMore
+        return listElementHome
     }
 }
-

@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ai.ftech.themestore.R
-import ai.ftech.themestore.detailPreview.ElementImageMore
 import ai.ftech.themestore.detailPreview.Image
-import ai.ftech.themestore.home.ImageHome
+import ai.ftech.themestore.home.ListImage
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -32,7 +31,7 @@ class WallpapersFragment : Fragment() {
         rvImageW = view.findViewById(R.id.rvWallpapers)
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshW)
 
-        val image : MutableList<Image> = ImageHome.listElement()
+        val image : MutableList<Image> = ListImage.listElement()
 
         if(activity != null){
             wallpapersAdapter = WallpapersAdapter(image, activity!!)

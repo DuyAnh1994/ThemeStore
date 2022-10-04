@@ -94,7 +94,7 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/btFllow"
+                    android:id="@+id/btFllowDetail"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="100dp"
@@ -161,12 +161,12 @@ Meme là gì mà lại được giới trẻ toàn thế giới cực kỳ ưa t
                 android:background="@drawable/shape_bt_login4"
                 android:text="@string/save"
                 android:textAllCaps="false"
-                app:layout_constraintEnd_toStartOf="@+id/ibShare"
+                app:layout_constraintEnd_toStartOf="@+id/ibShareDetail"
                 app:layout_constraintStart_toEndOf="@+id/btAccessDetail"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/ibShare"
+                android:id="@+id/ibShareDetail"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentBottom="true"

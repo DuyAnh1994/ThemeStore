@@ -4,14 +4,13 @@ import ai.ftech.themestore.R
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
@@ -48,7 +47,24 @@ class ElementDetailAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder.apply {
             when (holder) {
-                is ImageDetailViewHolder -> holder.bindDataImageDetail()
+                is ImageDetailViewHolder -> {
+                    holder.bindDataImageDetail()
+
+                    holder.btAccessDetail.setOnClickListener {
+                        val uri = Uri.parse(Image().urlAccess)
+                        val intent = Intent(Intent.ACTION_VIEW, uri)
+                        context.startActivity(intent)
+                    }
+
+                    holder.btShareDetail.setOnClickListener {
+                        val shareIntent = Intent(Intent.ACTION_SEND)
+                            shareIntent.putExtra(Intent.EXTRA_TEXT, "https://i.pinimg.com/236x/3c/d4/90/3cd490db9071e1aae2114e28929b51e5.jpg")
+                            shareIntent.setType("text/plain")
+                            shareIntent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+                        context.startActivity(shareIntent)
+                    }
+
+                }
                 is MoreLikeThisViewHolder -> {
                     if (position > 0) {
                         val elementImageMore = listMoreLikeThis[position-1]
@@ -70,7 +86,6 @@ class ElementDetailAdapter(
                             intent.putExtra("thomnt", elementImageMore)
                             context.startActivity(intent)
                         }
-
                     }
                 }
             }
@@ -98,7 +113,8 @@ class ElementDetailAdapter(
         private val tvContent: TextView
         private val civAvatarAccount: CircleImageView
         private val edtComment: EditText
-
+        val btAccessDetail : Button
+        val btShareDetail : ImageButton
 
         init {
             ivImage = itemView.findViewById(R.id.ivImageDetail)
@@ -109,6 +125,8 @@ class ElementDetailAdapter(
             tvContent = itemView.findViewById(R.id.tvContent)
             civAvatarAccount = itemView.findViewById(R.id.civAvatarAccount)
             edtComment = itemView.findViewById(R.id.edtComment)
+            btAccessDetail = itemView.findViewById(R.id.btAccessDetail)
+            btShareDetail = itemView.findViewById(R.id.ibShareDetail)
         }
 
         fun bindDataImageDetail() {

@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
         rvImage = view.findViewById(R.id.rvImage)
         swipeRefreshLayout = view.findViewById(R.id.swipeRefresh)
 
-        val element : MutableList<Image> = ImageHome.listElement()
+        val element : MutableList<Image> = ListImage.listElement()
 
         if(activity != null){
             imageAdapter = ImageAdapter(activity!!)

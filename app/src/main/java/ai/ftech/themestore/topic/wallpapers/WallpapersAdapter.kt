@@ -1,7 +1,6 @@
 package ai.ftech.themestore.topic.wallpapers
 
 import ai.ftech.themestore.R
-import ai.ftech.themestore.detailPreview.ElementImageMore
 import ai.ftech.themestore.detailPreview.Image
 import android.content.Context
 import android.view.LayoutInflater

@@ -14,7 +14,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 
 class MoreLikeThisAdapter(
-    private var listUrlImageMore : MutableList<ElementImageMore>,
+    private var listUrlImageMore : MutableList<Image>,
     private var context : Context
 ) : RecyclerView.Adapter<MoreLikeThisAdapter.MoreLikeThisViewHolder>(){
 
@@ -27,7 +27,7 @@ class MoreLikeThisAdapter(
         val itemMore = listUrlImageMore[position]
         var requestOptions = RequestOptions()
         requestOptions = requestOptions.transform(CenterInside(), RoundedCorners(40))
-        Glide.with(context).load(itemMore.url).apply(requestOptions).into(holder.ivImageMore)
+        Glide.with(context).load(itemMore.urlImage).apply(requestOptions).into(holder.ivImageMore)
     }
 
 
