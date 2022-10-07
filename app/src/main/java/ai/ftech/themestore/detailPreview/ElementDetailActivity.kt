@@ -1,9 +1,7 @@
 package ai.ftech.themestore.detailPreview
 
 import ai.ftech.themestore.R
-import ai.ftech.themestore.home.ListImage
 import android.os.Bundle
-import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -26,10 +24,9 @@ class ElementDetailActivity : AppCompatActivity() {
             imageDetail = extras.getSerializable("thomnt") as Image
         }
 
-
         rvDetailPreview = findViewById(R.id.rvDetailPreview)
 
-        val element: MutableList<Image> = ListImage.listElement()
+        val element: MutableList<Image> = ListImage.listElementImage()
 
 //        for(i in 0..element.size - 1){
 //            Log.d(TAG, "onCreate: ${element[i].firstItem}  ${element[i].lastItem} ")
@@ -41,7 +38,6 @@ class ElementDetailActivity : AppCompatActivity() {
 
         val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         rvDetailPreview.layoutManager = layoutManager
-
 
     }
 

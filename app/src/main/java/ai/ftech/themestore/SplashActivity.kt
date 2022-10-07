@@ -14,6 +14,7 @@ import android.widget.Toast
 import java.io.InputStream
 import java.net.URL
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {

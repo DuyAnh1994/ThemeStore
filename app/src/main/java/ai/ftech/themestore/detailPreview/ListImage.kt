@@ -1,10 +1,8 @@
-package ai.ftech.themestore.home
-
-import ai.ftech.themestore.detailPreview.Image
+package ai.ftech.themestore.detailPreview
 
 object ListImage {
-    fun listElement(): MutableList<Image> {
-        val listElementHome: MutableList<Image> = mutableListOf()
+    fun listElementImage() : MutableList<Image> {
+        val listImage: MutableList<Image> = mutableListOf()
         val listUrl: MutableList<String> = mutableListOf(
             "https://i.pinimg.com/236x/f2/5a/e5/f25ae5445a02133d5407392a08c70644.jpg",
             "https://i.pinimg.com/236x/ca/4e/72/ca4e7245293f384444e65544741ce787.jpg",
@@ -41,8 +39,45 @@ object ListImage {
             "https://i.pinimg.com/236x/fa/e5/50/fae5503352eb3050a2430dab469f80b3.jpg"
         )
 
+        val listTitle : MutableList<String> = mutableListOf(
+            "Avater đôi",
+            "Meme đáng yêu",
+            "Quỳnh Aka",
+            "300+ meme",
+            "Meme mèo",
+
+            "Hình nền điện thoại đẹp",
+            "Ảnh meme haha",
+            "Hình nền điện thoại đẹp",
+            "Ảnh meme haha",
+            "Hình nền điện thoại đẹp",
+
+            "Ảnh động vật",
+            "Avater đôi",
+            "Lisa_ảnh game_cool",
+            "V_BTS_hình nền điện thoại",
+            "Thiên nhiên xinh đẹp",
+
+            "Avater đôi",
+            "Pikachu",
+            "Ảnh động vật đáng yêu",
+            "Ảnh động vật",
+            "Ảnh mèo xù lông",
+
+            "Ảnh hoàng hôn _ Anime",
+            "Cánh đồng hoa",
+            "Ảnh ngang",
+            "Lisa_BlackPink",
+            "QuỳnhAka meme",
+
+            "Kpop_idol",
+            "Ảnh bầu trời đẹp",
+            "PinkVenom_BlackPink",
+        )
+
         for (i in 0 until listUrl.size) {
             val image = Image().apply {
+                title = listTitle[i]
                 urlImage = listUrl[i]
                 if (i == 0){
                     firstItem = true
@@ -51,8 +86,8 @@ object ListImage {
                     lastItem = true
                 }
             }
-            listElementHome.add(image)
+            listImage.add(image)
         }
-        return listElementHome
+        return listImage
     }
 }

@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import ai.ftech.themestore.R
 import ai.ftech.themestore.detailPreview.Image
+import ai.ftech.themestore.detailPreview.ListImage
 import android.annotation.SuppressLint
-import android.content.SharedPreferences
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -26,12 +26,22 @@ class HomeFragment : Fragment() {
         return view
     }
 
-    @SuppressLint("UseRequireInsteadOfGet", "NotifyDataSetChanged")
+
+    @SuppressLint("UseRequireInsteadOfGet", "NotifyDataSetChanged", "CommitPrefEdits")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         rvImage = view.findViewById(R.id.rvImage)
         swipeRefreshLayout = view.findViewById(R.id.swipeRefresh)
 
-        val element : MutableList<Image> = ListImage.listElement()
+        val element : MutableList<Image> = ListImage.listElementImage()
+
+//        if(activity!=null){
+//            sharedPreferences = this.activity!!.getSharedPreferences("dataImage", Context.MODE_PRIVATE)
+//        }
+//        val editor : SharedPreferences.Editor = sharedPreferences.edit()
+//        val image : Image = Image()
+//        val gson : Gson = Gson()
+//        val json : String? = gson.toJson(image)
+//        editor.putString("image", json)
 
         if(activity != null){
             imageAdapter = ImageAdapter(activity!!)
@@ -51,5 +61,23 @@ class HomeFragment : Fragment() {
         }
 
     }
+
+//    private fun saveData() {
+//        sharedPreferences = context.getSharedPreferences("dataImage", 0)
+//        val editor : SharedPreferences.Editor = sharedPreferences.edit()
+//        val gson : Gson = Gson()
+//        val json : String? = gson.toJson()
+//        editor.putString("image", json)
+//        editor.apply()
+//    }
+//
+//    private fun loadData(){
+//        sharedPreferences = context.getSharedPreferences("dataImage", 0)
+//        val gson : Gson = Gson()
+//        val json : String? = sharedPreferences.getString("image", null)
+//        val type : Type = TypeToken<MutableList<Image>>().type
+//        listImageUrls = json.fromJson(json, type)
+//
+//    }
 }
 

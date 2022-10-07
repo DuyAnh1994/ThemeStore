@@ -1,13 +1,17 @@
 package ai.ftech.themestore.login
 
 import ai.ftech.themestore.R
+import ai.ftech.themestore.detailPreview.Image
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
+import com.google.gson.Gson
+import java.lang.System.setIn
 
 class AccountLoginActivity : AppCompatActivity() {
     private  lateinit var edtEnterEmail: EditText
@@ -16,6 +20,9 @@ class AccountLoginActivity : AppCompatActivity() {
     private lateinit var cbRemember : CheckBox
     private lateinit var sharedPreferences: SharedPreferences
 
+    companion object{
+        private const val TAG = "AccountLoginActivity"
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account_login)
@@ -37,26 +44,60 @@ class AccountLoginActivity : AppCompatActivity() {
             val password : String = edtEnterPassword.text.toString().trim()
 
             if(email.equals("thomnt@gmail.com") && password.equals("123456")){
-                Toast.makeText(this, "Dang nhap thanh cong", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_LONG).show()
                 if(cbRemember.isChecked){ // nếu click remember -> lưu
                     val editor : SharedPreferences.Editor = sharedPreferences.edit()
+
+                    val image : Image = Image()
+                    val gson : Gson = Gson()
+                    val json : String? = gson.toJson(image)
+                  //  Log.d(TAG, "onCreate: $json")
+                   editor.putString("image", json)
+
+                    val image1 : MutableList<Image> = mutableListOf(
+                        Image().apply {
+                            urlImage = ""
+                            urlAvatar = "urlAvatar1"
+                            nameA = "Hehe"
+                            follower = "173k follower"
+                            title = "Xin chao"
+                            content = "content1"
+                            urlAccess = "urlAccess1"
+                        },
+                        Image().apply {
+                            urlImage = ""
+                            urlAvatar = "urlAvatar2"
+                            nameA = "Hoho"
+                            follower = "223k follower"
+                            title = "Hello"
+                            content = "content2"
+                            urlAccess = "urlAccess2"
+                        }
+                    )
+                        val json1 : String = gson.toJson(image1)
+                        Log.d(TAG, "onCreate: $json1")
+                        editor.putString("image1", json1)
+
+
+
                     editor.putString("email", email)
                     editor.putString("password", password)
                     editor.putBoolean("statusCheckbox", true) // lưu trạng thái của checkbox
-                    editor.commit()
+                    editor.apply()
                 }else{
                     val editor : SharedPreferences.Editor = sharedPreferences.edit()
                     editor.remove("email")
                     editor.remove("password")
                     editor.remove("statusCheckbox")
-                    editor.commit()
+                    editor.remove("image")
+                    editor.apply()
                 }
             }
             else{
-                Toast.makeText(this, "Sai email hoac password", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Sai email hoặc password", Toast.LENGTH_LONG).show()
             }
         }
     }
 
-
+// gọi vào phần data chứa obj đó rùi save
 }

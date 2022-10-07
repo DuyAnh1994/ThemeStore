@@ -4,6 +4,7 @@ import ai.ftech.themestore.R
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.util.Log
@@ -86,6 +87,7 @@ class ElementDetailAdapter(
                             intent.putExtra("thomnt", elementImageMore)
                             context.startActivity(intent)
                         }
+
                     }
                 }
             }
