@@ -12,7 +12,6 @@ class ElementDetailActivity : AppCompatActivity() {
     private lateinit var rvDetailPreview: RecyclerView
     private lateinit var elementDetailAdapter: ElementDetailAdapter
     private lateinit var imageDetail: Image
-    private lateinit var ibShare: ImageButton
 
     companion object {
         private const val TAG = "123"

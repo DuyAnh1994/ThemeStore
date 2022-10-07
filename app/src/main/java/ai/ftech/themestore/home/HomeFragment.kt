@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import ai.ftech.themestore.R
 import ai.ftech.themestore.detailPreview.Image
 import android.annotation.SuppressLint
+import android.content.SharedPreferences
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout

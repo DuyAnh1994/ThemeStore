@@ -15,24 +15,28 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ThemeStore"
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=".SplashActivity"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".TestSP"
+            android:exported="false" />
+        <activity
+            android:name=".TestActivity"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".SplashActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".detailPreview.ElementDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".login.AccountLoginActivity"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".DetailPreview"-->
-<!--            android:exported="false" /> &lt;!&ndash; <activity &ndash;&gt;-->
+            android:name=".SplashActivity"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".DetailPreview" -->
+        <!-- android:exported="false" /> &lt;!&ndash; <activity &ndash;&gt; -->
         <!-- android:name=".TestActivity" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".SplashActivity"
+            android:name=".login.AccountLoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

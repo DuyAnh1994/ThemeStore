@@ -115,6 +115,7 @@ class ElementDetailAdapter(
         private val edtComment: EditText
         val btAccessDetail : Button
         val btShareDetail : ImageButton
+        val btSaveDetail : Button
 
         init {
             ivImage = itemView.findViewById(R.id.ivImageDetail)
@@ -127,6 +128,8 @@ class ElementDetailAdapter(
             edtComment = itemView.findViewById(R.id.edtComment)
             btAccessDetail = itemView.findViewById(R.id.btAccessDetail)
             btShareDetail = itemView.findViewById(R.id.ibShareDetail)
+            btSaveDetail = itemView.findViewById(R.id.btSaveDetail)
+
         }
 
         fun bindDataImageDetail() {
