@@ -47,6 +47,7 @@ class HomeFragment : Fragment() {
             imageAdapter = ImageAdapter(activity!!)
         }
 
+
         val staggeredGridLayoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         rvImage.layoutManager = staggeredGridLayoutManager

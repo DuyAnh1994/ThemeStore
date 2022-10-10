@@ -79,12 +79,12 @@ object ListImage {
             val image = Image().apply {
                 title = listTitle[i]
                 urlImage = listUrl[i]
-                if (i == 0){
-                    firstItem = true
-                }
-                else if (i == listUrl.size - 1) {
-                    lastItem = true
-                }
+//                if (i == 0){
+//                    firstItem = true
+//                }
+//                else if (i == listUrl.size - 1) {
+//                    lastItem = true
+//                }
             }
             listImage.add(image)
         }

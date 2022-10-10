@@ -3,6 +3,8 @@ package ai.ftech.themestore.home
 import ai.ftech.themestore.R
 import ai.ftech.themestore.detailPreview.ElementDetailActivity
 import ai.ftech.themestore.detailPreview.Image
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -23,6 +25,10 @@ class ImageAdapter(
     private var context: Context
 ) : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
+    companion object{
+        val REQUEST_CODE = 1
+    }
+
     private var listImageUrls: MutableList<Image> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
@@ -40,7 +46,7 @@ class ImageAdapter(
             .placeholder(R.drawable.ic_image)
             .into(holder.ivImage)
 
-        holder.ivImage.setOnClickListener {
+        holder.ivImage.setOnClickListener { // click vào bất kì 1 ảnh thì sẽ cho ra activity chi tiết của ảnh đó, truyền dữ liệu là obj
             val intent = Intent(context, ElementDetailActivity::class.java)
             intent.putExtra("thomnt",listImageUrls[position])
             context.startActivity(intent)
@@ -52,6 +58,7 @@ class ImageAdapter(
         return listImageUrls.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun resetData(listImageUrls: MutableList<Image>){
         this.listImageUrls.clear()
         this.listImageUrls.addAll(listImageUrls)
@@ -61,35 +68,11 @@ class ImageAdapter(
     inner class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var ivImage: ImageView
         private var ivImageSelect: ImageView
-        lateinit var sharedPreferences: SharedPreferences
 
         init {
             ivImage = itemView.findViewById(R.id.ivImage)
             ivImageSelect = itemView.findViewById(R.id.ivImageSelect)
-
-//            ivImage.setOnClickListener {
-//                saveData()
-//            }
         }
-
-//        fun saveData(){
-//            sharedPreferences = context.getSharedPreferences("dataImage", 0)
-//            val editor : SharedPreferences.Editor = sharedPreferences.edit()
-//            val gson : Gson = Gson()
-//            val json : String? = gson.toJson(listImageUrls)
-//            editor.putString("image", json)
-//            editor.apply()
-//        }
-//
-//        fun loadData(){
-//            sharedPreferences = context.getSharedPreferences("dataImage", 0)
-//            val gson : Gson = Gson()
-//            val json : String? = sharedPreferences.getString("image", null)
-//            val type : Type = TypeToken<MutableList<Image>>().type
-//            listImageUrls = json.fromJson(json, type)
-//
-//        }
-
-
-    }}
+    }
+}
 

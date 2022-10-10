@@ -10,6 +10,7 @@
         android:id="@+id/ivImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:adjustViewBounds="true"
         android:padding="4dp"
         android:src="@drawable/ic_image" />
@@ -19,5 +20,6 @@
         android:layout_width="25dp"
         android:layout_height="20dp"
         android:layout_gravity="right"
-        android:src="@drawable/ic_select_black" />
+        android:src="@drawable/ic_select_black"
+        tool:ignore="RtlHardcoded" />
 </LinearLayout>

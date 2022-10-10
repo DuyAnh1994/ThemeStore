@@ -30,7 +30,7 @@
             android:layout_weight="2"
             android:gravity="left"
             android:text="Day la title"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
         <ImageView
             android:id="@+id/ivImageSelectMore"
@@ -38,7 +38,7 @@
             android:layout_height="20dp"
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_select_black" />
+            android:src="@drawable/ic_select_white" />
     </LinearLayout>
 
 </LinearLayout>

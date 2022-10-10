@@ -11,8 +11,8 @@ class Image : Serializable {
     var content: String = "Day la content"
     var urlAccess: String = "https://quantrimang.com/cong-nghe/meme-la-gi-va-mot-so-meme-pho-bien-163106"
 
-    var firstItem: Boolean = false
-    var lastItem: Boolean = false
+//    var firstItem: Boolean = false
+//    var lastItem: Boolean = false
 }
 
 

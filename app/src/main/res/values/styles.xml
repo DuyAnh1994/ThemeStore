@@ -3,4 +3,13 @@
     <style name="Corner25ImageView">
         <item name="cornerSize">25dp</item>
     </style>
+
+    <style name="AppBottomSheetDialogTheme">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/rounded_bottom_dialog</item>
+    </style>
 </resources>

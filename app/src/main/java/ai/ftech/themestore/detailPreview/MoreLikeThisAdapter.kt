@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -28,6 +29,7 @@ class MoreLikeThisAdapter(
         var requestOptions = RequestOptions()
         requestOptions = requestOptions.transform(CenterInside(), RoundedCorners(40))
         Glide.with(context).load(itemMore.urlImage).apply(requestOptions).into(holder.ivImageMore)
+
     }
 
 

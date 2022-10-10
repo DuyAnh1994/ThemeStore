@@ -13,11 +13,58 @@
     <string name="notifications_fragment">NotificationsFragment</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="save">Lưu</string>
     <string name="access">Truy cập</string>
     <string name="follow">Theo dõi</string>
     <string name="titleComment">Nhận xét</string>
     <string name="comment">Bạn thích Ghim này? Hãy cho mình biết!</string>
     <string name="enterComment">Thêm nhận xét</string>
+
+    <string name="titleBottomSheet">Ghim này đã lấy cảm hứng từ hoạt động gần đây của bạn</string>
+    <string name="hide">Ẩn</string>
+    <string name="download">Tải ảnh xuống</string>
+    <string name="report">Báo cáo</string>
+    <string name="close">Đóng</string>
+
+    <string name="titleBottomSheetHide">Tại sao bạn lại ẩn Ghim này?</string>
+    <string name="hide1">Mờ hoặc khó đọc</string>
+    <string name="hide2">Không phải ngôn ngữ tôi hiểu</string>
+    <string name="hide3">Đã thấy Ghim quá nhiều lần</string>
+    <string name="hide4">Không liên quan đến tôi</string>
+    <string name="hide5">Khác</string>
+
+    <string name="titleBottomSheetReport">Báo cáo ghim</string>
+    <string name="report1">Spam</string>
+    <string name="report11">Bài đăng gây hiểu lầm hoặc lặp lại</string>
+    <string name="report2">Khỏa thân hoặc khiêu dâm</string>
+    <string name="report21">Nội dung khiêu dâm</string>
+    <string name="report3">Tự hành xác</string>
+    <string name="report31">Rối loạn ăn uống, tự hành xác, tự sát</string>
+    <string name="report4">Thông tin sai lệch</string>
+    <string name="report41">Thông tin sai lệch hoặc thuyết âm mưu về sức khỏe, khí hậu hoặc bầu cử</string>
+    <string name="report5">Hoạt động thù địch</string>
+    <string name="report51">Định kiến, vơ đũa cả nắm, cổ súy sự thượng đẳng của người da trắng, tục tĩu</string>
+    <string name="report6">Hàng hóa nguy hiểm</string>
+    <string name="report61">Ma túy, vũ khí, sản phẩm bị kiểm soát</string>
+    <string name="report7">Quấy rối hoặc vi phạm quyền riêng tư</string>
+    <string name="report71">Xúc phạm, đe dọa, thông tin nhận dạng cá nhân</string>
+    <string name="report8">Hình ảnh bạo lực</string>
+    <string name="report81">Hình ảnh bạo lực hoặc kích động bạo lực</string>
+    <string name="report9">Tài sản trí tuệ của tôi</string>
+    <string name="report91">Vi phạm bản quyền hay thương hiệu</string>
+
+    <string name="titleBottomSheetDownload">Lưu hoặc tải</string>
+    <string name="mess">Messenger</string>
+    <string name="mess1">Tin nhắn</string>
+    <string name="facebook">Facebook</string>
+    <string name="email">Email</string>
+    <string name="telegram">Telegram</string>
+    <string name="copyLink">Sao chép liên kết</string>
+
+
+
+
+
 
 </resources>
