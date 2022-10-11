@@ -18,6 +18,29 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import de.hdodenhof.circleimageview.CircleImageView
 
+
+//open class ImageComment(){
+//
+//}
+//class MyImage() : ImageComment(){
+//    var name : String = " "
+//}
+//
+//class MyComment() : ImageComment(){
+//    var ij : String = " "
+//}
+
+//fun main() {
+//    val list :MutableList<ImageComment> = mutableListOf()
+//    list.add(MyComment().apply {
+//        ij = "a"
+//    })
+//    list.add(MyImage().apply {
+//        name = "jj"
+//    })
+//}
+
+
 class ElementDetailAdapter(
     private val imageDetail: Image,
     private var context: Context
@@ -27,7 +50,7 @@ class ElementDetailAdapter(
     companion object {
         private const val IMAGE_DETAIL_TYPE = 0
         private const val LIST_MORE_LIKE_THIS = 1
-        private const val REQUEST_CODE = 2
+        private const val LIST_COMMENT = 2
         private const val TAG = "ElementDetailAdapter"
 
     }
@@ -202,6 +225,20 @@ class ElementDetailAdapter(
     override fun getItemCount(): Int {
         return 1 + listMoreLikeThis.size
     }
+
+//    override fun getItemViewType(position: Int): Int {
+//        return when (position) {
+//            0 -> IMAGE_DETAIL_TYPE
+//            else -> {
+//                val item = listMoreLikeThis[position]
+//                return if(item is MyImage){
+//                    LIST_MORE_LIKE_THIS
+//                }else{
+//                    LIST_COMMENT
+//                }
+//            }
+//        }
+//    }
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {

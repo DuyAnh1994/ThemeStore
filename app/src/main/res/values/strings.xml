@@ -12,7 +12,9 @@
     <string name="ringtones_fragment">RingtonesFragment</string>
     <string name="notifications_fragment">NotificationsFragment</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="contentCreateProfile">Chưa tạo ghim nào</string>
+    <string name="hello_blank_fragment">hello_blank_fragment</string>
 
     <string name="save">Lưu</string>
     <string name="access">Truy cập</string>
@@ -62,9 +64,12 @@
     <string name="telegram">Telegram</string>
     <string name="copyLink">Sao chép liên kết</string>
 
-
-
-
+    <string name="follower">người theo dõi</string>
+    <string name="following">đang theo dõi</string>
+    <string name="space">-</string>
+    <string name="created">Đã tạo</string>
+    <string name="saved">Đã lưu</string>
+    <string name="search">Tìm kiếm</string>
 
 
 </resources>

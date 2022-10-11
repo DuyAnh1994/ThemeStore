@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="15dp"
+    android:paddingHorizontal="8dp"
+    tools:context=".account.SavedFragment">
+
+    <RelativeLayout
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edtSearch"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_bt_grey"
+            android:drawableLeft="@drawable/ic_search_grey"
+            android:hint="@string/search"
+            android:textSize="18dp" />
+
+        <ImageView
+            android:id="@+id/ivSort"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignEnd="@+id/edtSearch"
+            android:layout_marginEnd="-46dp"
+            android:layout_marginBottom="0dp"
+            android:src="@drawable/ic_sort" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:layout_alignEnd="@+id/ivSort"
+            android:layout_marginEnd="-57dp"
+            android:layout_marginBottom="0dp"
+            android:src="@drawable/ic_add" />
+    </RelativeLayout>
+
+</LinearLayout>

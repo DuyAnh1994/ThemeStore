@@ -1,9 +1,10 @@
 package ai.ftech.themestore
 
-import ai.ftech.themestore.fragment.AccountFragment
+import ai.ftech.themestore.account.AccountFragment
 import ai.ftech.themestore.home.HomeFragment
 import ai.ftech.themestore.fragment.SearchFragment
 import ai.ftech.themestore.topic.TopicFragment
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -30,12 +31,13 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView = findViewById(R.id.bottomNavigationMenu)
 
         vpHome = findViewById(R.id.vpHome)
-        vpHomeAdapter.addTab(TabTopic(homeFragment))
-        vpHomeAdapter.addTab(TabTopic(topicFragment))
-        vpHomeAdapter.addTab(TabTopic(searchFragment))
-        vpHomeAdapter.addTab( TabTopic(accountFragment))
+        vpHomeAdapter.addTab(Tab(homeFragment))
+        vpHomeAdapter.addTab(Tab(topicFragment))
+        vpHomeAdapter.addTab(Tab(searchFragment))
+        vpHomeAdapter.addTab( Tab(accountFragment))
 
         vpHome.setOnTouchListener(object : View.OnTouchListener{
+            @SuppressLint("ClickableViewAccessibility")
             override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
                 return true
             }

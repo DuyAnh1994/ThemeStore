@@ -1,10 +1,11 @@
 package ai.ftech.themestore
 
+import ai.ftech.themestore.account.CreatedFragment
 import androidx.fragment.app.*
 
 class ViewPagerAdapter(fragmentManager: FragmentManager) :FragmentPagerAdapter(fragmentManager) {
 
-    private var listTab : MutableList<TabTopic> = mutableListOf()
+    private var listTab : MutableList<Tab> = mutableListOf()
 
     override fun getCount() : Int = listTab.size
 
@@ -18,8 +19,8 @@ class ViewPagerAdapter(fragmentManager: FragmentManager) :FragmentPagerAdapter(f
         return tab.string
     }
 
-    fun addTab(tabTopic: TabTopic){
-        listTab.add(tabTopic)
+    fun addTab(tab: Tab){
+        listTab.add(tab)
     }
 
 }

@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ai.ftech.themestore.R
-import ai.ftech.themestore.TabTopic
+import ai.ftech.themestore.Tab
 import ai.ftech.themestore.ViewPagerAdapter
 import ai.ftech.themestore.fragment.NotificationsFragment
 import ai.ftech.themestore.topic.ringtones.RingtonesFragment
@@ -25,7 +25,7 @@ class TopicFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        var fragmentView: View =  inflater.inflate(R.layout.fragment_topic, container, false)
+        val fragmentView: View =  inflater.inflate(R.layout.fragment_topic, container, false)
         return fragmentView
     }
 
@@ -36,9 +36,9 @@ class TopicFragment : Fragment() {
 
         vpTopicAdapter =  ViewPagerAdapter(childFragmentManager)
 
-        vpTopicAdapter.addTab( TabTopic(wallpapersFragment, "Wallpapers"))
-        vpTopicAdapter.addTab( TabTopic(ringtonesFragment, "Ringtones"))
-        vpTopicAdapter.addTab( TabTopic(notificationSoundsFragment, "Notifications"))
+        vpTopicAdapter.addTab( Tab(wallpapersFragment, "Wallpapers"))
+        vpTopicAdapter.addTab( Tab(ringtonesFragment, "Ringtones"))
+        vpTopicAdapter.addTab( Tab(notificationSoundsFragment, "Notifications"))
 
 
         vpTopic.adapter = vpTopicAdapter
