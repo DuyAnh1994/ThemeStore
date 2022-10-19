@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import ai.ftech.themestore.R
 import ai.ftech.themestore.Tab
 import ai.ftech.themestore.ViewPagerAdapter
-import ai.ftech.themestore.fragment.NotificationsFragment
-import ai.ftech.themestore.topic.ringtones.RingtonesFragment
-import ai.ftech.themestore.topic.wallpapers.WallpapersFragment
+import ai.ftech.themestore.fragment.AudioFragment
+import ai.ftech.themestore.topic.videos.VideoFragment
+import ai.ftech.themestore.topic.images.ImageFragment
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 
@@ -19,9 +19,9 @@ class TopicFragment : Fragment() {
     private lateinit var tabLayout: TabLayout
     private lateinit var vpTopic : ViewPager
     private lateinit var vpTopicAdapter: ViewPagerAdapter
-    private var wallpapersFragment : WallpapersFragment = WallpapersFragment()
-    private var ringtonesFragment : RingtonesFragment = RingtonesFragment()
-    private var notificationSoundsFragment : NotificationsFragment = NotificationsFragment()
+    private var imageFragment : ImageFragment = ImageFragment()
+    private var ringtonesFragment : VideoFragment = VideoFragment()
+    private var notificationSoundsFragment : AudioFragment = AudioFragment()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -36,9 +36,9 @@ class TopicFragment : Fragment() {
 
         vpTopicAdapter =  ViewPagerAdapter(childFragmentManager)
 
-        vpTopicAdapter.addTab( Tab(wallpapersFragment, "Wallpapers"))
-        vpTopicAdapter.addTab( Tab(ringtonesFragment, "Ringtones"))
-        vpTopicAdapter.addTab( Tab(notificationSoundsFragment, "Notifications"))
+        vpTopicAdapter.addTab( Tab(imageFragment, "Image"))
+        vpTopicAdapter.addTab( Tab(ringtonesFragment, "Video"))
+        vpTopicAdapter.addTab( Tab(notificationSoundsFragment, "Audio"))
 
 
         vpTopic.adapter = vpTopicAdapter

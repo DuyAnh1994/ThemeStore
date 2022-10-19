@@ -8,14 +8,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 
 class MoreLikeThisAdapter(
-    private var listUrlImageMore : MutableList<Image>,
+    private var listUrlPostMore : MutableList<Post>,
     private var context : Context
 ) : RecyclerView.Adapter<MoreLikeThisAdapter.MoreLikeThisViewHolder>(){
 
@@ -25,16 +24,16 @@ class MoreLikeThisAdapter(
     }
 
     override fun onBindViewHolder(holder: MoreLikeThisViewHolder, position: Int) {
-        val itemMore = listUrlImageMore[position]
+        val itemMore = listUrlPostMore[position]
         var requestOptions = RequestOptions()
         requestOptions = requestOptions.transform(CenterInside(), RoundedCorners(40))
-        Glide.with(context).load(itemMore.urlImage).apply(requestOptions).into(holder.ivImageMore)
+        Glide.with(context).load(itemMore.url).apply(requestOptions).into(holder.ivImageMore)
 
     }
 
 
     override fun getItemCount(): Int {
-        return listUrlImageMore.size
+        return listUrlPostMore.size
     }
 
     class MoreLikeThisViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){

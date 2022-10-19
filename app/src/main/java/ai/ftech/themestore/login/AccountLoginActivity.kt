@@ -1,7 +1,7 @@
 package ai.ftech.themestore.login
 
 import ai.ftech.themestore.R
-import ai.ftech.themestore.detailPreview.Image
+import ai.ftech.themestore.detailPreview.Post
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,7 +11,6 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import com.google.gson.Gson
-import java.lang.System.setIn
 
 class AccountLoginActivity : AppCompatActivity() {
     private  lateinit var edtEnterEmail: EditText
@@ -48,15 +47,15 @@ class AccountLoginActivity : AppCompatActivity() {
                 if(cbRemember.isChecked){ // nếu click remember -> lưu
                     val editor : SharedPreferences.Editor = sharedPreferences.edit()
 
-                    val image : Image = Image()
+                    val post : Post = Post()
                     val gson : Gson = Gson()
-                    val json : String? = gson.toJson(image)
+                    val json : String? = gson.toJson(post)
                   //  Log.d(TAG, "onCreate: $json")
                    editor.putString("image", json)
 
-                    val image1 : MutableList<Image> = mutableListOf(
-                        Image().apply {
-                            urlImage = ""
+                    val post1s : MutableList<Post> = mutableListOf(
+                        Post().apply {
+                            url = ""
                             urlAvatar = "urlAvatar1"
                             nameA = "Hehe"
                             follower = "173k follower"
@@ -64,8 +63,8 @@ class AccountLoginActivity : AppCompatActivity() {
                             content = "content1"
                             urlAccess = "urlAccess1"
                         },
-                        Image().apply {
-                            urlImage = ""
+                        Post().apply {
+                            url = ""
                             urlAvatar = "urlAvatar2"
                             nameA = "Hoho"
                             follower = "223k follower"
@@ -74,7 +73,7 @@ class AccountLoginActivity : AppCompatActivity() {
                             urlAccess = "urlAccess2"
                         }
                     )
-                        val json1 : String = gson.toJson(image1)
+                        val json1 : String = gson.toJson(post1s)
                         Log.d(TAG, "onCreate: $json1")
                         editor.putString("image1", json1)
 

@@ -1,4 +1,4 @@
-package ai.ftech.themestore.topic.wallpapers
+package ai.ftech.themestore.topic.images
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,45 +6,45 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ai.ftech.themestore.R
-import ai.ftech.themestore.detailPreview.Image
-import ai.ftech.themestore.detailPreview.ListImage
+import ai.ftech.themestore.detailPreview.Post
+import ai.ftech.themestore.detailPreview.ListPost
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import java.util.*
 
-class WallpapersFragment : Fragment() {
-    private lateinit var rvImageW : RecyclerView
-    private lateinit var wallpapersAdapter : WallpapersAdapter
+class ImageFragment : Fragment() {
+    private lateinit var rvImage : RecyclerView
+    private lateinit var imageAdapter : ImageAdapter
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        return inflater.inflate(R.layout.fragment_wallpapers, container, false)
+        return inflater.inflate(R.layout.fragment_image, container, false)
     }
 
     @SuppressLint("UseRequireInsteadOfGet")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        rvImageW = view.findViewById(R.id.rvWallpapers)
+        rvImage = view.findViewById(R.id.rvImage)
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshW)
 
-        val image : MutableList<Image> = ListImage.listElementImage()
+        val post : MutableList<Post> = ListPost.listElement()
 
         if(activity != null){
-            wallpapersAdapter = WallpapersAdapter(image, activity!!)
+            imageAdapter = ImageAdapter(post, activity!!)
         }
-        rvImageW.adapter = wallpapersAdapter
+        rvImage.adapter = imageAdapter
 
-        var staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
-        rvImageW.layoutManager = staggeredGridLayoutManager
+        rvImage.layoutManager = staggeredGridLayoutManager
 
         swipeRefreshLayout.setOnRefreshListener {
             swipeRefreshLayout.isRefreshing = false
-            Collections.shuffle(image, Random(System.currentTimeMillis()))
+            Collections.shuffle(post, Random(System.currentTimeMillis()))
         }
     }
 

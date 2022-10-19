@@ -7,12 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import ai.ftech.themestore.R
 
-class NotificationsFragment : Fragment() {
+class AudioFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notifications, container, false)
+        return inflater.inflate(R.layout.fragment_audio, container, false)
     }
 
 

@@ -15,54 +15,30 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import de.hdodenhof.circleimageview.CircleImageView
 
-
-//open class ImageComment(){
-//
-//}
-//class MyImage() : ImageComment(){
-//    var name : String = " "
-//}
-//
-//class MyComment() : ImageComment(){
-//    var ij : String = " "
-//}
-
-//fun main() {
-//    val list :MutableList<ImageComment> = mutableListOf()
-//    list.add(MyComment().apply {
-//        ij = "a"
-//    })
-//    list.add(MyImage().apply {
-//        name = "jj"
-//    })
-//}
-
-
-class ElementDetailAdapter(
-    private val imageDetail: Image,
+class DetailAdapter(
+    private val postDetail: Post,
     private var context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     companion object {
-        private const val IMAGE_DETAIL_TYPE = 0
+        private const val POST_DETAIL_TYPE = 0
         private const val LIST_MORE_LIKE_THIS = 1
-        private const val LIST_COMMENT = 2
-        private const val TAG = "ElementDetailAdapter"
-
     }
 
-    private val listMoreLikeThis: MutableList<Image> = mutableListOf()
+    private val listMoreLikeThis: MutableList<Post> = mutableListOf()
+    private var mPlayer: SimpleExoPlayer? = null
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        if (viewType == IMAGE_DETAIL_TYPE) {
+        if (viewType == POST_DETAIL_TYPE) {
             val imageDetailView: View = LayoutInflater
                 .from(parent.context)
-                .inflate(R.layout.detail_image_item, parent, false)
+                .inflate(R.layout.detail_item, parent, false)
             return ImageDetailViewHolder(imageDetailView)
         }
         val moreLikeThisView: View = LayoutInflater
@@ -78,16 +54,16 @@ class ElementDetailAdapter(
                     holder.bindDataImageDetail()
 
                     holder.btAccessDetail.setOnClickListener {
-                        val uri = Uri.parse(Image().urlAccess)
+                        val uri = Uri.parse(Post().urlAccess)
                         val intent = Intent(Intent.ACTION_VIEW, uri)
                         context.startActivity(intent)
                     }
 
                     holder.btShareDetail.setOnClickListener {
                         val shareIntent = Intent(Intent.ACTION_SEND)
-                            shareIntent.putExtra(Intent.EXTRA_TEXT, "https://i.pinimg.com/236x/3c/d4/90/3cd490db9071e1aae2114e28929b51e5.jpg")
-                            shareIntent.setType("text/plain")
-                            shareIntent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+                        shareIntent.putExtra(Intent.EXTRA_TEXT, "https://i.pinimg.com/236x/3c/d4/90/3cd490db9071e1aae2114e28929b51e5.jpg")
+                        shareIntent.setType("text/plain")
+                        shareIntent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
                         context.startActivity(shareIntent)
                     }
 
@@ -106,11 +82,14 @@ class ElementDetailAdapter(
                         showBottomSheetDialog()
                     }
 
+                    holder.edtComment.setOnClickListener {
+                        showBottomSheetDialogComment()
+                    }
 
                 }
                 is MoreLikeThisViewHolder -> {
                     if (position > 0) {
-                        val elementImageMore = listMoreLikeThis[position-1]
+                        val elementImageMore = listMoreLikeThis[position - 1]
                         holder.bindDataMoreLikeThis(elementImageMore)
 
 //                        if (elementImageMore.firstItem) {
@@ -128,11 +107,10 @@ class ElementDetailAdapter(
 //                        layoutParams.isFullSpan = true
 
                         holder.ivImageMore.setOnClickListener { // click vào bất kì một ảnh trong list more like this sẽ hiện ra màn chi tiết của ảnh đó
-                            val intent = Intent(context, ElementDetailActivity::class.java)
+                            val intent = Intent(context, DetailActivity::class.java)
                             intent.putExtra("thomnt", elementImageMore)
                             context.startActivity(intent)
                         }
-
                     }
                 }
             }
@@ -143,6 +121,29 @@ class ElementDetailAdapter(
     val bottomSheetDialogHide = BottomSheetDialog(context)
     val bottomSheetDialogReport = BottomSheetDialog(context)
     val bottomSheetDialogDownload = BottomSheetDialog(context)
+    val bottomSheetDialogComment = BottomSheetDialog(context)
+
+    private fun showBottomSheetDialogComment() {
+        bottomSheetDialogComment.setContentView(R.layout.bottom_sheet_dialog_comment)
+
+        val edtComment = bottomSheetDialogComment.findViewById<EditText>(R.id.edtComment)
+        val btPostCmt = bottomSheetDialogComment.findViewById<Button>(R.id.btPostCmt)
+        val closePost = bottomSheetDialogComment.findViewById<ImageView>(R.id.ivCloseCmt)
+
+//        if (btPostCmt != null) {
+//            btPostCmt.setOnClickListener {
+//
+//            }
+//        }
+        bottomSheetDialogComment.show()
+
+        if (closePost != null) {
+            closePost.setOnClickListener {
+                bottomSheetDialogComment.dismiss()
+            }
+        }
+
+    }
 
     private fun showBottomSheetDialog() {
         bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog)
@@ -182,14 +183,14 @@ class ElementDetailAdapter(
     private fun showBottomSheetDialogReport() {
         bottomSheetDialogReport.setContentView(R.layout.bottom_sheet_dialog_report)
 
-        val report1 =bottomSheetDialogReport.findViewById<RelativeLayout>(R.id.rlReport1)
-        val report2 =bottomSheetDialogReport.findViewById<RelativeLayout>(R.id.rlReport2)
-        val report3 =bottomSheetDialogReport.findViewById<RelativeLayout>(R.id.rlReport3)
-        val report4 =bottomSheetDialogReport.findViewById<RelativeLayout>(R.id.rlReport4)
-        val report5 =bottomSheetDialogReport.findViewById<RelativeLayout>(R.id.rlReport5)
-        val report6 =bottomSheetDialogReport.findViewById<RelativeLayout>(R.id.rlReport6)
-        val report7 =bottomSheetDialogReport.findViewById<RelativeLayout>(R.id.rlReport7)
-        val report8 =bottomSheetDialogReport.findViewById<RelativeLayout>(R.id.rlReport8)
+        val report1 = bottomSheetDialogReport.findViewById<RelativeLayout>(R.id.rlReport1)
+        val report2 = bottomSheetDialogReport.findViewById<RelativeLayout>(R.id.rlReport2)
+        val report3 = bottomSheetDialogReport.findViewById<RelativeLayout>(R.id.rlReport3)
+        val report4 = bottomSheetDialogReport.findViewById<RelativeLayout>(R.id.rlReport4)
+        val report5 = bottomSheetDialogReport.findViewById<RelativeLayout>(R.id.rlReport5)
+        val report6 = bottomSheetDialogReport.findViewById<RelativeLayout>(R.id.rlReport6)
+        val report7 = bottomSheetDialogReport.findViewById<RelativeLayout>(R.id.rlReport7)
+        val report8 = bottomSheetDialogReport.findViewById<RelativeLayout>(R.id.rlReport8)
         val report9 = bottomSheetDialogReport.findViewById<RelativeLayout>(R.id.rlReport9)
         val closeReport = bottomSheetDialogReport.findViewById<ImageView>(R.id.ivCloseReport)
 
@@ -226,23 +227,9 @@ class ElementDetailAdapter(
         return 1 + listMoreLikeThis.size
     }
 
-//    override fun getItemViewType(position: Int): Int {
-//        return when (position) {
-//            0 -> IMAGE_DETAIL_TYPE
-//            else -> {
-//                val item = listMoreLikeThis[position]
-//                return if(item is MyImage){
-//                    LIST_MORE_LIKE_THIS
-//                }else{
-//                    LIST_COMMENT
-//                }
-//            }
-//        }
-//    }
-
     override fun getItemViewType(position: Int): Int {
         return when (position) {
-            0 -> IMAGE_DETAIL_TYPE
+            0 -> POST_DETAIL_TYPE
             else -> LIST_MORE_LIKE_THIS
         }
     }
@@ -255,12 +242,13 @@ class ElementDetailAdapter(
         private val tvTitle: TextView
         private val tvContent: TextView
         private val civAvatarAccount: CircleImageView
-        private val edtComment: EditText
-        val ivBack : ImageView
-        val ivSelect : ImageView
-        val btAccessDetail : Button
-        val btShareDetail : ImageButton
-        val btSaveDetail : Button
+        val edtComment: EditText
+        val ivBack: ImageView
+        val ivSelect: ImageView
+        val btAccessDetail: Button
+        val btShareDetail: ImageButton
+        val btSaveDetail: Button
+//        val exoPlayer: PlayerView
 
         init {
             ivImage = itemView.findViewById(R.id.ivImageDetail)
@@ -277,23 +265,24 @@ class ElementDetailAdapter(
             btShareDetail = itemView.findViewById(R.id.ibShareDetail)
             btSaveDetail = itemView.findViewById(R.id.btSaveDetail)
 
+        //    exoPlayer = itemView.findViewById(R.id.exoPvVideo)
         }
 
         fun bindDataImageDetail() {
-            Glide.with(context).load(imageDetail.urlImage).into(ivImage)
-            tvTitle.text = imageDetail.title
-            tvContent.text = imageDetail.content
+            Glide.with(context).load(postDetail.url).into(ivImage)
+            tvTitle.text = postDetail.title
+            tvContent.text = postDetail.content
 
-            Glide.with(context).load(imageDetail.urlAvatar).into(civAvatar)
-            tvAccountName.text = imageDetail.nameA
-            tvFollowersDetail.text = imageDetail.follower
+            Glide.with(context).load(postDetail.urlAvatar).into(civAvatar)
+            tvAccountName.text = postDetail.nameA
+            tvFollowersDetail.text = postDetail.follower
 
-            Glide.with(context).load(imageDetail.urlImage).into(civAvatarAccount)
+            Glide.with(context).load(postDetail.url).into(civAvatarAccount)
         }
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun resetData(listMoreLikeThis: List<Image>) {
+    fun resetData(listMoreLikeThis: List<Post>) {
         this.listMoreLikeThis.clear()
         this.listMoreLikeThis.addAll(listMoreLikeThis)
         notifyDataSetChanged()
@@ -312,14 +301,12 @@ class ElementDetailAdapter(
             llImageDetail = itemView.findViewById(R.id.llImageDetail)
         }
 
-        fun bindDataMoreLikeThis(elementImageMore: Image ) {
+        fun bindDataMoreLikeThis(elementPostMore: Post) {
             var requestOptions = RequestOptions()
             requestOptions = requestOptions.transform(CenterInside(), RoundedCorners(40))
 
-            Glide.with(context).load(elementImageMore.urlImage).apply(requestOptions).into(ivImageMore)
-            tvTitleMore.text = elementImageMore.title
+            Glide.with(context).load(elementPostMore.url).apply(requestOptions).into(ivImageMore)
+            tvTitleMore.text = elementPostMore.title
         }
     }
-
 }
-

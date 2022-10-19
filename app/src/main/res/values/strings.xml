@@ -4,9 +4,9 @@
     <string name="action_topic">Topic</string>
     <string name="action_search">Search</string>
     <string name="action_account">Account</string>
-    <string name="action_wallpapers">Wallpapers</string>
-    <string name="action_ringtones">Ringtones</string>
-    <string name="action_notificationSounds">NotificationSounds</string>
+    <string name="action_wallpapers">Image</string>
+    <string name="action_ringtones">Video</string>
+    <string name="action_notificationSounds">Audio</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="wallpapers_fragment">WallpapersFragment</string>
     <string name="ringtones_fragment">RingtonesFragment</string>
@@ -70,6 +70,10 @@
     <string name="created">Đã tạo</string>
     <string name="saved">Đã lưu</string>
     <string name="search">Tìm kiếm</string>
+
+    <string name="titleCmt">Thêm nhận xét</string>
+    <string name="post">Đăng</string>
+    <string name="commentLine">Chia sẻ điều bạn thích về Ghim này, cách Ghim truyền cảm hứng cho bạn hoặc đơn giản là đưa ra lời khen</string>
 
 
 </resources>

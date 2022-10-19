@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".topic.ringtones.RingtonesFragment">
+    tools:context=".topic.images.ImageFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshR"
+        android:id="@+id/swipeRefreshW"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvRingtones"
+            android:id="@+id/rvImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

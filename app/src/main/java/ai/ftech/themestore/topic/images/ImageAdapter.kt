@@ -1,7 +1,7 @@
-package ai.ftech.themestore.topic.wallpapers
+package ai.ftech.themestore.topic.images
 
 import ai.ftech.themestore.R
-import ai.ftech.themestore.detailPreview.Image
+import ai.ftech.themestore.detailPreview.Post
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -13,13 +13,13 @@ import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 
-class WallpapersAdapter(
-    private val listImageWallpapersUrls: MutableList<Image>,
+class ImageAdapter(
+    private val listImageUrls: MutableList<Post>,
     private val context: Context
-) : RecyclerView.Adapter<WallpapersAdapter.ImageWallpapersViewHolder>() {
+) : RecyclerView.Adapter<ImageAdapter.ImageWallpapersViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageWallpapersViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.wallpapers_item, parent , false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.image_item, parent , false)
     return ImageWallpapersViewHolder(view)
     }
 
@@ -28,23 +28,23 @@ class WallpapersAdapter(
         requestOptions = requestOptions.transform(CenterInside(), RoundedCorners(40))
 
         Glide.with(context)
-            .load(listImageWallpapersUrls[position].urlImage)
+            .load(listImageUrls[position].url)
             .apply(requestOptions)
             .placeholder(R.drawable.ic_image)
-            .into(holder.ivImageW)
+            .into(holder.ivImage)
     }
 
     override fun getItemCount(): Int {
-        return listImageWallpapersUrls.size
+        return listImageUrls.size
     }
 
     class ImageWallpapersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var ivImageW : ImageView
-        private var ivImageSelectW : ImageView
+        var ivImage : ImageView
+        private var ivImageSelect : ImageView
 
         init {
-            ivImageW = itemView.findViewById(R.id.ivImageW)
-            ivImageSelectW = itemView.findViewById(R.id.ivImageSelectW)
+            ivImage = itemView.findViewById(R.id.ivImage)
+            ivImageSelect = itemView.findViewById(R.id.ivImageSelect)
         }
     }
 }
