@@ -18,7 +18,6 @@ class DetailActivity : AppCompatActivity(), Player.Listener{
     private lateinit var rvDetailPreview: RecyclerView
     private lateinit var detailAdapter: DetailAdapter
     private lateinit var postDetail: Post
-    private var mPlayer : SimpleExoPlayer? = null
 //    private lateinit var exoPvVideo : PlayerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,67 +60,7 @@ class DetailActivity : AppCompatActivity(), Player.Listener{
         rvDetailPreview.layoutManager = layoutManager
     }
 
-//    fun initPlayer(){
-//        mPlayer = SimpleExoPlayer.Builder(this).build()
-//
-//    //    exoPvVideo.player = mPlayer
-//
-//        mPlayer?.playWhenReady = true
-//
-//        mPlayer?.setMediaSource(buildMediaSource())
-//
-//        mPlayer?.prepare()
-//    }
-//
-//    override fun onStart() {
-//        super.onStart()
-//        if (Util.SDK_INT >= 24) {
-//            initPlayer()
-//        }
-//    }
-//
-//    override fun onResume() {
-//        super.onResume()
-//        if (Util.SDK_INT < 24 || mPlayer == null) {
-//            initPlayer()
-//        }
-//    }
-//
-//    override fun onPause() {
-//        super.onPause()
-//        if (Util.SDK_INT < 24) {
-//            releasePlayer()
-//        }
-//    }
-//
-//    override fun onStop() {
-//        super.onStop()
-//        if (Util.SDK_INT >= 24) {
-//            releasePlayer()
-//        }
-//    }
-//
-//
-//    private fun releasePlayer() {
-//        if (mPlayer == null) {
-//            return
-//        }
-//        //release player when done
-//        mPlayer!!.release()
-//        mPlayer = null
-//    }
-//
-//    private fun buildMediaSource(): MediaSource {
-////        val data : DataSource.Factory = DefaultHttpDataSource.Factory()
-////        val mediaSource: MediaSource = ProgressiveMediaSource.Factory(data)
-////            .createMediaSource(MediaItem.fromUri(urlVideo))
-////        return mediaSource
-//        val dataSourceFactory: DataSource.Factory = DefaultHttpDataSource.Factory()
-//        val mediaSource: MediaSource = ProgressiveMediaSource.Factory(dataSourceFactory)
-//            .createMediaSource(MediaItem.fromUri(""))
-//
-//        return mediaSource
-//    }
+
 }
 
 

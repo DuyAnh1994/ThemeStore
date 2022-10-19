@@ -50,25 +50,26 @@ class HomeAdapter(
                 .placeholder(R.drawable.ic_image)
                 .into(holder.ivImage)
         }
-//        holder.ivImage.setOnClickListener { // click vào bất kì 1 ảnh thì sẽ cho ra activity chi tiết của ảnh đó, truyền dữ liệu là obj
-//            val intent = Intent(context, ElementDetailActivity::class.java)
-//            intent.putExtra("thomnt", listPostUrls[position])
-//            context.startActivity(intent)
-//        }
 
-        holder.ivImage.setOnClickListener {
-            if(listPostUrls[position].isImage()){
-                val intent = Intent(context, DetailActivity::class.java)
-                intent.putExtra("thomnt", listPostUrls[position])
-                context.startActivity(intent)
-            }
-            else{
-                val intent1 = Intent(context, TestActivity::class.java)
-                intent1.putExtra("thomnt", listPostUrls[position])
-                context.startActivity(intent1)
-            }
-
+        holder.ivImage.setOnClickListener { // click vào bất kì 1 ảnh thì sẽ cho ra activity chi tiết của ảnh đó, truyền dữ liệu là obj
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra("thomnt", listPostUrls[position])
+            context.startActivity(intent)
         }
+
+//        holder.ivImage.setOnClickListener {
+//            if(listPostUrls[position].isImage()){
+//                val intent = Intent(context, DetailActivity::class.java)
+//                intent.putExtra("thomnt", listPostUrls[position])
+//                context.startActivity(intent)
+//            }
+//            else{
+//                val intent1 = Intent(context, TestActivity::class.java)
+//                intent1.putExtra("thomnt", listPostUrls[position])
+//                context.startActivity(intent1)
+//            }
+//
+//        }
 
     }
 

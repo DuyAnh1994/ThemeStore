@@ -10,12 +10,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.source.MediaSource
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
+import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.upstream.DataSource
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -32,7 +40,6 @@ class DetailAdapter(
 
     private val listMoreLikeThis: MutableList<Post> = mutableListOf()
     private var mPlayer: SimpleExoPlayer? = null
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (viewType == POST_DETAIL_TYPE) {
@@ -235,7 +242,7 @@ class DetailAdapter(
     }
 
     inner class ImageDetailViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val ivImage: ImageView
+        private var ivImage: ImageView
         private val civAvatar: CircleImageView
         private val tvAccountName: TextView
         private val tvFollowersDetail: TextView
@@ -248,7 +255,8 @@ class DetailAdapter(
         val btAccessDetail: Button
         val btShareDetail: ImageButton
         val btSaveDetail: Button
-//        val exoPlayer: PlayerView
+        var exoPlayer: PlayerView
+        var mPlayer : SimpleExoPlayer? = null
 
         init {
             ivImage = itemView.findViewById(R.id.ivImageDetail)
@@ -265,11 +273,31 @@ class DetailAdapter(
             btShareDetail = itemView.findViewById(R.id.ibShareDetail)
             btSaveDetail = itemView.findViewById(R.id.btSaveDetail)
 
-        //    exoPlayer = itemView.findViewById(R.id.exoPvVideo)
+            exoPlayer = itemView.findViewById(R.id.exoPvVideo)
+            if(postDetail.isImage()){
+                ivImage.visibility = ImageView.VISIBLE
+            }else{
+               exoPlayer.visibility = PlayerView.VISIBLE
+                ivImage.visibility = ImageView.GONE
+            }
+//            exoPlayer = itemView.findViewById(R.id.exoPvVideo)
         }
 
         fun bindDataImageDetail() {
-            Glide.with(context).load(postDetail.url).into(ivImage)
+            if(postDetail.isImage()){
+                Glide.with(context).load(postDetail.url).into(ivImage)
+            }else{
+                val urlVideo = Uri.parse(postDetail.url)
+                val data : DataSource.Factory = DefaultHttpDataSource.Factory()
+                val mediaSource: MediaSource = ProgressiveMediaSource.Factory(data)
+                    .createMediaSource(MediaItem.fromUri(urlVideo))
+
+                mPlayer = SimpleExoPlayer.Builder(context).build()
+                exoPlayer.player = mPlayer
+                mPlayer?.playWhenReady = true
+                mPlayer?.setMediaSource(mediaSource)
+                mPlayer?.prepare()
+            }
             tvTitle.text = postDetail.title
             tvContent.text = postDetail.content
 
