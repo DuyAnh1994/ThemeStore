@@ -32,29 +32,22 @@ class VideoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         rvVideo = view.findViewById(R.id.rvVideo)
 
- //       val post : MutableList<Post> = ListPost.listElement()
+        val post : MutableList<Post> = ListPost.listElement()
 
-//        val post : MutableList<String> = mutableListOf(
-//            "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-//            "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-//            "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-//            "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-//            "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-//            "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-//            "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
-//            "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-//            "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
-//            "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
-//            "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4",
-//            "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
-//            "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4")
+        val urlVideo : MutableList<Post> = mutableListOf()
 
-        //val post = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        for(i in 0 until post.size){
+            if(post[i].check == 1){
+                urlVideo.add(post[i])
+            }
+        }
+
         if(activity != null){
-            videoAdapter = VideoAdapter(activity!!)
+            videoAdapter = VideoAdapter(context!!)
         }
 
         rvVideo.adapter = videoAdapter
+        videoAdapter.resetData(urlVideo)
 
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 

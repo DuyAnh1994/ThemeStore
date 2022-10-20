@@ -10,8 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterInside
@@ -40,6 +38,7 @@ class DetailAdapter(
 
     private val listMoreLikeThis: MutableList<Post> = mutableListOf()
     private var mPlayer: SimpleExoPlayer? = null
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (viewType == POST_DETAIL_TYPE) {
@@ -256,7 +255,12 @@ class DetailAdapter(
         val btShareDetail: ImageButton
         val btSaveDetail: Button
         var exoPlayer: PlayerView
-        var mPlayer : SimpleExoPlayer? = null
+
+        val player = SimpleExoPlayer.Builder(context).build()
+        val urlVideo = Uri.parse(postDetail.url)
+        val data: DataSource.Factory = DefaultHttpDataSource.Factory()
+        val mediaSource: MediaSource = ProgressiveMediaSource.Factory(data)
+            .createMediaSource(MediaItem.fromUri(urlVideo))
 
         init {
             ivImage = itemView.findViewById(R.id.ivImageDetail)
@@ -272,32 +276,22 @@ class DetailAdapter(
             btAccessDetail = itemView.findViewById(R.id.btAccessDetail)
             btShareDetail = itemView.findViewById(R.id.ibShareDetail)
             btSaveDetail = itemView.findViewById(R.id.btSaveDetail)
-
             exoPlayer = itemView.findViewById(R.id.exoPvVideo)
-            if(postDetail.isImage()){
+
+            if (postDetail.isImage()) {
                 ivImage.visibility = ImageView.VISIBLE
-            }else{
-               exoPlayer.visibility = PlayerView.VISIBLE
+            } else {
+                exoPlayer.visibility = PlayerView.VISIBLE
                 ivImage.visibility = ImageView.GONE
             }
-//            exoPlayer = itemView.findViewById(R.id.exoPvVideo)
+            exoPlayer.player = player
+            player.playWhenReady = true
+            player.setMediaSource(mediaSource)
+            player.prepare()
         }
 
         fun bindDataImageDetail() {
-            if(postDetail.isImage()){
-                Glide.with(context).load(postDetail.url).into(ivImage)
-            }else{
-                val urlVideo = Uri.parse(postDetail.url)
-                val data : DataSource.Factory = DefaultHttpDataSource.Factory()
-                val mediaSource: MediaSource = ProgressiveMediaSource.Factory(data)
-                    .createMediaSource(MediaItem.fromUri(urlVideo))
-
-                mPlayer = SimpleExoPlayer.Builder(context).build()
-                exoPlayer.player = mPlayer
-                mPlayer?.playWhenReady = true
-                mPlayer?.setMediaSource(mediaSource)
-                mPlayer?.prepare()
-            }
+            Glide.with(context).load(postDetail.url).into(ivImage)
             tvTitle.text = postDetail.title
             tvContent.text = postDetail.content
 

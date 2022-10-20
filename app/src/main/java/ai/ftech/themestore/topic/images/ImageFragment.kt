@@ -32,9 +32,16 @@ class ImageFragment : Fragment() {
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshW)
 
         val post : MutableList<Post> = ListPost.listElement()
+        val urlImage : MutableList<Post> = mutableListOf()
+
+        for(i in 0 until post.size){
+            if(post[i].isImage()){
+                urlImage.add(post[i])
+            }
+        }
 
         if(activity != null){
-            imageAdapter = ImageAdapter(post, activity!!)
+            imageAdapter = ImageAdapter(urlImage, activity!!)
         }
         rvImage.adapter = imageAdapter
 
