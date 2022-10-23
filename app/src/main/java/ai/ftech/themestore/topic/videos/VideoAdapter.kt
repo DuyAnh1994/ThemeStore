@@ -1,9 +1,11 @@
 package ai.ftech.themestore.topic.videos
 
 import ai.ftech.themestore.R
+import ai.ftech.themestore.detailPreview.DetailActivity
 import ai.ftech.themestore.detailPreview.Post
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.media.MediaMetadataRetriever
 import android.view.LayoutInflater
 import android.view.View
@@ -38,7 +40,13 @@ class VideoAdapter(
             .apply(requestOptions)
             .placeholder(R.drawable.ic_image)
             .into(holder.ivImage)
+
+        holder.ivImage.setOnClickListener {
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra("thomnt", listVideoUrl[position])
+            context.startActivity(intent)
         }
+    }
 
     override fun getItemCount(): Int {
         return listVideoUrl.size

@@ -5,11 +5,13 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterInside
@@ -23,13 +25,13 @@ import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.gson.Gson
 import de.hdodenhof.circleimageview.CircleImageView
 
 class DetailAdapter(
     private val postDetail: Post,
     private var context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
 
     companion object {
         private const val POST_DETAIL_TYPE = 0
@@ -38,9 +40,12 @@ class DetailAdapter(
 
     private val listMoreLikeThis: MutableList<Post> = mutableListOf()
     private var mPlayer: SimpleExoPlayer? = null
+    private lateinit var sharedPreferences: SharedPreferences
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        sharedPreferences = context.getSharedPreferences("SaveData", AppCompatActivity.MODE_PRIVATE)
+
         if (viewType == POST_DETAIL_TYPE) {
             val imageDetailView: View = LayoutInflater
                 .from(parent.context)
@@ -53,6 +58,7 @@ class DetailAdapter(
         return MoreLikeThisViewHolder(moreLikeThisView)
     }
 
+    @SuppressLint("CommitPrefEdits")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder.apply {
             when (holder) {
@@ -90,6 +96,16 @@ class DetailAdapter(
 
                     holder.edtComment.setOnClickListener {
                         showBottomSheetDialogComment()
+                    }
+
+                    holder.btSaveDetail.setOnClickListener {
+                        Toast.makeText(context, "Đã lưu", Toast.LENGTH_SHORT).show()
+                        val editor : SharedPreferences.Editor = sharedPreferences.edit()
+                        val post : Post = Post()
+                        val gson : Gson = Gson()
+                        val json : String? = gson.toJson(post)
+                        editor.putString("save", json)
+                        editor.apply()
                     }
 
                 }

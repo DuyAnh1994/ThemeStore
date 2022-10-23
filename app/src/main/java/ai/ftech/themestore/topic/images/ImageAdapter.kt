@@ -1,8 +1,10 @@
 package ai.ftech.themestore.topic.images
 
 import ai.ftech.themestore.R
+import ai.ftech.themestore.detailPreview.DetailActivity
 import ai.ftech.themestore.detailPreview.Post
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +34,12 @@ class ImageAdapter(
             .apply(requestOptions)
             .placeholder(R.drawable.ic_image)
             .into(holder.ivImage)
+
+        holder.ivImage.setOnClickListener {
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra("thomnt", listImageUrls[position])
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

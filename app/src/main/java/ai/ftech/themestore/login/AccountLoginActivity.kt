@@ -50,6 +50,7 @@ class AccountLoginActivity : AppCompatActivity() {
                     val post : Post = Post()
                     val gson : Gson = Gson()
                     val json : String? = gson.toJson(post)
+
                   //  Log.d(TAG, "onCreate: $json")
                    editor.putString("image", json)
 
