@@ -3,15 +3,20 @@ package ai.ftech.themestore.detailPreview
 import ai.ftech.themestore.R
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
+import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterInside
@@ -40,12 +45,11 @@ class DetailAdapter(
 
     private val listMoreLikeThis: MutableList<Post> = mutableListOf()
     private var mPlayer: SimpleExoPlayer? = null
-    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var sharedPreferences : SharedPreferences
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        sharedPreferences = context.getSharedPreferences("SaveData", AppCompatActivity.MODE_PRIVATE)
-
+        sharedPreferences = context.getSharedPreferences("SaveData", Context.MODE_PRIVATE)
         if (viewType == POST_DETAIL_TYPE) {
             val imageDetailView: View = LayoutInflater
                 .from(parent.context)
@@ -82,13 +86,6 @@ class DetailAdapter(
                     holder.ivBack.setOnClickListener { // click vào back trên appbar thì nó sẽ xóa màn hiện tại và trả về màn trước đó
                         (context as Activity).finish()
                     }
-//                    holder.ivSelect.setOnClickListener(object : View.OnClickListener{
-//                        override fun onClick(v: View?) {
-//                            val activity : AppCompatActivity = v?.context as AppCompatActivity
-//                            val bottomSheetDialogFragment = BottomSheetDialogFragment()
-//                            activity.supportFragmentManager.beginTransaction().replace(R.id.llElementDetail, bottomSheetDialogFragment).addToBackStack(null).commit()
-//                        }
-//                    })
 
                     holder.ivSelect.setOnClickListener {
                         showBottomSheetDialog()
@@ -100,33 +97,20 @@ class DetailAdapter(
 
                     holder.btSaveDetail.setOnClickListener {
                         Toast.makeText(context, "Đã lưu", Toast.LENGTH_SHORT).show()
-                        val editor : SharedPreferences.Editor = sharedPreferences.edit()
-                        val post : Post = Post()
-                        val gson : Gson = Gson()
-                        val json : String? = gson.toJson(post)
-                        editor.putString("save", json)
-                        editor.apply()
-                    }
 
+                        val editor : SharedPreferences.Editor = sharedPreferences.edit()
+                        val gson : Gson = Gson()
+                        val listSaved : MutableList<Post> = mutableListOf()
+                        listSaved.add(postDetail)
+                        val jsonList = gson.toJson(listSaved)
+                        editor.putString("imageSaved", jsonList)
+                        listSaved.size
+                    }
                 }
                 is MoreLikeThisViewHolder -> {
                     if (position > 0) {
                         val elementImageMore = listMoreLikeThis[position - 1]
                         holder.bindDataMoreLikeThis(elementImageMore)
-
-//                        if (elementImageMore.firstItem) {
-//                            holder.llImageDetail.setBackgroundResource(R.drawable.shape_corner_top)
-//                        }
-//                        else if (elementImageMore.lastItem) {
-//                            Log.d(TAG, "onBindViewHolder: ")
-//                            holder.llImageDetail.setBackgroundResource(R.drawable.shape_corner_bottom)
-//                        }
-//                        else{
-//                            holder.llImageDetail.setBackgroundResource(R.drawable.shape_normal)
-//                        }
-
-//                        val layoutParams : StaggeredGridLayoutManager.LayoutParams = holder.itemView.layoutParams as StaggeredGridLayoutManager.LayoutParams
-//                        layoutParams.isFullSpan = true
 
                         holder.ivImageMore.setOnClickListener { // click vào bất kì một ảnh trong list more like this sẽ hiện ra màn chi tiết của ảnh đó
                             val intent = Intent(context, DetailActivity::class.java)
@@ -142,7 +126,6 @@ class DetailAdapter(
     val bottomSheetDialog = BottomSheetDialog(context)
     val bottomSheetDialogHide = BottomSheetDialog(context)
     val bottomSheetDialogReport = BottomSheetDialog(context)
-    val bottomSheetDialogDownload = BottomSheetDialog(context)
     val bottomSheetDialogComment = BottomSheetDialog(context)
 
     private fun showBottomSheetDialogComment() {
@@ -152,11 +135,6 @@ class DetailAdapter(
         val btPostCmt = bottomSheetDialogComment.findViewById<Button>(R.id.btPostCmt)
         val closePost = bottomSheetDialogComment.findViewById<ImageView>(R.id.ivCloseCmt)
 
-//        if (btPostCmt != null) {
-//            btPostCmt.setOnClickListener {
-//
-//            }
-//        }
         bottomSheetDialogComment.show()
 
         if (closePost != null) {
@@ -168,6 +146,8 @@ class DetailAdapter(
     }
 
     private fun showBottomSheetDialog() {
+  //     bottomSheetDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
         bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog)
 
         val hide = bottomSheetDialog.findViewById<TextView>(R.id.tvHide)
@@ -195,11 +175,26 @@ class DetailAdapter(
 
         if (download != null) {
             download.setOnClickListener {
-                Toast.makeText(context, "Đã tải hình ảnh xuống!", Toast.LENGTH_SHORT).show()
+                startDownload()
             }
         }
         bottomSheetDialog.show()
 
+    }
+
+    private fun startDownload() {
+        val request : DownloadManager.Request = DownloadManager.Request(Uri.parse(postDetail.url))
+        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE or  DownloadManager.Request.NETWORK_WIFI)
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, System.currentTimeMillis().toString())
+
+        val downloadManager : DownloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        if(downloadManager != null){
+            downloadManager.enqueue(request)
+            if(postDetail.isImage()){
+                Toast.makeText(context, "Đã tải hình ảnh xuống!", Toast.LENGTH_SHORT).show()
+            }else
+                Toast.makeText(context, "Đã tải video xuống!", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun showBottomSheetDialogReport() {

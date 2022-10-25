@@ -1,7 +1,7 @@
 package ai.ftech.themestore.detailPreview
 
 object ListPost {
-    fun listElement(): MutableList<Post> {
+    fun listPost(): MutableList<Post> {
         val listPost: MutableList<Post> = mutableListOf()
         listPost.add(Post().apply {
             title = "100 ảnh meme có chọn lọc"
@@ -160,41 +160,3 @@ object ListPost {
         return listPost
     }
 }
-
-//        val listTitleVideo: MutableList<String> = mutableListOf(
-//            "Shutdown dance cover by Ciin",
-//            "Cold blood dance cover by ciin",
-//            "Lisa dance Attention",
-//
-//            "Quynh Aka",
-//            "Chú khủng long vàng siêu cute",
-//            "pìu piu píu",
-//
-//            "Gdragon",
-//            "Outfit đơn giản giúp bạn trông bạn có gu hơn",
-//            "ntcong"
-//        )
-
-//        for (i in 0 until listUrlImage.size) {
-//            val post = Post().apply {
-//                title = listTitleImage[i]
-//                    url = listUrlImage[i]
-//                if(check==0){
-//                    title = listTitleImage[i]
-//                    url = listUrlImage[i]
-//                }
-//                else if (check==1){
-//                    title = listTitleVideo[i]
-//                    url = listUrlVideo[i]
-//                }
-
-//                if (i == 0){
-//                    firstItem = true
-//                }
-//                else if (i == listUrl.size - 1) {
-//                    lastItem = true
-//                }
-//            }
-//            listPost.add(post)
-//        }
-

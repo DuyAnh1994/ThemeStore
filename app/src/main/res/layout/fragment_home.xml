@@ -25,14 +25,12 @@
                 android:clipToPadding="false" />
 
             <ProgressBar
-                android:id="@+id/loadMore"
+                android:id="@+id/prbLoading"
+                android:layout_centerInParent="true"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="173dp"
-                android:layout_marginBottom="16dp"
-                android:visibility="invisible" />
+                android:visibility="visible" />
 
         </RelativeLayout>
 

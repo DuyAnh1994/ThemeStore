@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var vpHome: ViewPager
     private lateinit var bottomNavigationView: BottomNavigationView
     private var homeFragment: HomeFragment = HomeFragment()
-    private var topicFragment: TopicFragment = TopicFragment()
+//    private var topicFragment: TopicFragment = TopicFragment()
     private var searchFragment: SearchFragment = SearchFragment()
     private var accountFragment: AccountFragment = AccountFragment()
     private var vpHomeAdapter: ViewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
@@ -32,11 +32,12 @@ class MainActivity : AppCompatActivity() {
 
         vpHome = findViewById(R.id.vpHome)
         vpHomeAdapter.addTab(Tab(homeFragment))
-        vpHomeAdapter.addTab(Tab(topicFragment))
+//        vpHomeAdapter.addTab(Tab(topicFragment))
         vpHomeAdapter.addTab(Tab(searchFragment))
         vpHomeAdapter.addTab( Tab(accountFragment))
 
-        vpHome.setOnTouchListener(object : View.OnTouchListener{
+        vpHome.setOnTouchListener(
+        object : View.OnTouchListener{
             @SuppressLint("ClickableViewAccessibility")
             override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
                 return true

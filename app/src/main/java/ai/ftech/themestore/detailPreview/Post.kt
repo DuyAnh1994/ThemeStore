@@ -1,13 +1,15 @@
 package ai.ftech.themestore.detailPreview
 
+import ai.ftech.themestore.Utils
+import android.graphics.Bitmap
 import java.io.Serializable
 
 class Post : Serializable {
-    var check : Int = 0
+    var check: Int = 0
     var url: String = ""
     var title: String = ""
 
-    var id : Int = 0
+    var id: Int = 0
     var content: String = "Day la content"
     var urlAccess: String = "https://quantrimang.com/cong-nghe/meme-la-gi-va-mot-so-meme-pho-bien-163106"
 
@@ -16,11 +18,11 @@ class Post : Serializable {
     var follower: String = "173k follower"
 
 
-//    var firstItem: Boolean = false
-//    var lastItem: Boolean = false
-    fun isImage() : Boolean{
+    fun isImage(): Boolean {
         return check == 0
     }
+
+
 }
 
 

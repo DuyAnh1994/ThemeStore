@@ -2,13 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rounded_bottom_dialog"
     android:orientation="vertical"
-    android:paddingLeft="12dp"
+    android:gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-
+    <ProgressBar
+        android:id="@+id/prbDownload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

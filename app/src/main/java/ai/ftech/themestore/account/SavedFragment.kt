@@ -6,7 +6,6 @@ import android.annotation.SuppressLint
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,13 +13,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class SavedFragment : Fragment() {
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var rvSaved : RecyclerView
+    private lateinit var rvSaved: RecyclerView
     private lateinit var saveAdapter: SaveAdapter
-    
-    companion object{
+    private lateinit var listSaved: MutableList<Post>
+
+    companion object {
         private const val TAG = "SavedFragment"
     }
 
@@ -33,22 +34,26 @@ class SavedFragment : Fragment() {
     @SuppressLint("UseRequireInsteadOfGet", "CommitPrefEdits")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         rvSaved = view.findViewById(R.id.rvSaved)
-
-        val listSave : MutableList<Post> = mutableListOf()
-
-        val gson = Gson()
-        val json: String? = sharedPreferences.getString("save", "")
-
-        val obj: Post = gson.fromJson(json, Post::class.java)
-        Log.d(TAG, "onViewCreated: ")
-
-        saveAdapter = SaveAdapter(context!!)
-        listSave.add(obj)
-        saveAdapter.resetData(listSave)
-        rvSaved.adapter = saveAdapter
-
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
         rvSaved.layoutManager = staggeredGridLayoutManager
 
+        loadData()
+    }
+
+    fun loadData() {
+//        val jsonPost = sharedPreferences.getString("imageSaved", "")
+//        var post: MutableList<Post> = mutableListOf()
+//        if (jsonPost != null) {
+//            val gson = Gson()
+//            val listType = object : TypeToken<List<Post>>() {}.type
+//            if (listType != null) {
+//                post = gson.fromJson(jsonPost, listType)
+//            }
+//        }
+//
+//        listSaved = post
+//        saveAdapter = SaveAdapter(requireContext())
+//        saveAdapter.resetData(listSaved)
+//        rvSaved.adapter = saveAdapter
     }
 }

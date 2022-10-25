@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ai.ftech.themestore.R
-import ai.ftech.themestore.detailPreview.Post
-import ai.ftech.themestore.detailPreview.ListPost
+import ai.ftech.themestore.detailPreview.ListDisplay
+import ai.ftech.themestore.home.HomeAdapter
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -31,17 +31,17 @@ class ImageFragment : Fragment() {
         rvImage = view.findViewById(R.id.rvImage)
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshW)
 
-        val post : MutableList<Post> = ListPost.listElement()
-        val urlImage : MutableList<Post> = mutableListOf()
+        val post : MutableList<HomeAdapter.Display> = ListDisplay.listElement()
+        val urlImage : MutableList<HomeAdapter.Display> = mutableListOf()
 
-        for(i in 0 until post.size){
-            if(post[i].isImage()){
-                urlImage.add(post[i])
-            }
-        }
+//        for(i in 0 until post.size){
+//            if(post[i].isImage()){
+//                urlImage.add(post[i])
+//            }
+//        }
 
         if(activity != null){
-            imageAdapter = ImageAdapter(urlImage, activity!!)
+//            imageAdapter = ImageAdapter(urlImage, activity!!)
         }
         rvImage.adapter = imageAdapter
 

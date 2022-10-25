@@ -6,16 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ai.ftech.themestore.R
-import ai.ftech.themestore.detailPreview.ListPost
-import ai.ftech.themestore.detailPreview.Post
-import ai.ftech.themestore.topic.images.ImageAdapter
 import android.annotation.SuppressLint
-import android.widget.ProgressBar
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.ui.PlayerView
-import java.util.*
 
 
 class VideoFragment : Fragment() {
@@ -32,22 +25,22 @@ class VideoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         rvVideo = view.findViewById(R.id.rvVideo)
 
-        val post : MutableList<Post> = ListPost.listElement()
+//        val post : MutableList<Post> = ListPost.listElement()
 
-        val urlVideo : MutableList<Post> = mutableListOf()
-
-        for(i in 0 until post.size){
-            if(post[i].check == 1){
-                urlVideo.add(post[i])
-            }
-        }
+//        val urlVideo : MutableList<Post> = mutableListOf()
+//
+//        for(i in 0 until post.size){
+//            if(post[i].check == 1){
+//                urlVideo.add(post[i])
+//            }
+//        }
 
         if(activity != null){
-            videoAdapter = VideoAdapter(context!!)
+//            videoAdapter = VideoAdapter(context!!)
         }
 
         rvVideo.adapter = videoAdapter
-        videoAdapter.resetData(urlVideo)
+//        videoAdapter.resetData(urlVideo)
 
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
