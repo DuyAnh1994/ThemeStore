@@ -74,6 +74,8 @@
     <string name="titleCmt">Thêm nhận xét</string>
     <string name="post">Đăng</string>
     <string name="commentLine">Chia sẻ điều bạn thích về Ghim này, cách Ghim truyền cảm hứng cho bạn hoặc đơn giản là đưa ra lời khen</string>
+    <string name="titleSplash">Theme Store</string>
+    <string name="searchTheme">Search ThemeStore</string>
 
 
 </resources>

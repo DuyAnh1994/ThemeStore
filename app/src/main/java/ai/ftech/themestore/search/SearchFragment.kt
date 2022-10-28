@@ -1,6 +1,9 @@
-package ai.ftech.themestore.fragment
+package ai.ftech.themestore.search
 
 import ai.ftech.themestore.*
+import ai.ftech.themestore.search.ListImageSearch
+import ai.ftech.themestore.search.ImageSearch
+import ai.ftech.themestore.search.SearchAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,10 +14,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class SearchFragment : Fragment() {
-//    private lateinit var rvIdeasSearch : RecyclerView
-//    private lateinit var rvPopularSearch : RecyclerView
-//    private lateinit var ideasAdapter: IdeasAdapter
-//    private lateinit var popularAdapter: PopularAdapter
     private lateinit var rvSearch : RecyclerView
     private lateinit var searchAdapter: SearchAdapter
 
@@ -28,7 +27,7 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         rvSearch = view.findViewById(R.id.rvSearch)
-        val image : MutableList<ItemsSearch> = ImageItemsSearch.listImage()
+        val image : MutableList<ImageSearch> = ListImageSearch.listImage()
 
         val title : MutableList<String> = mutableListOf()
         title.add("Ideas for you")

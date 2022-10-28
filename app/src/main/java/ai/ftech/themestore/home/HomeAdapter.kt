@@ -68,7 +68,6 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ImageViewHolder>() {
                     .into(ivImage)
 
             } else {
-
                 Glide.with(itemView.context)
                     .load(display.bitmap)
                     .apply(requestOptions)

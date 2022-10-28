@@ -1,5 +1,6 @@
 package ai.ftech.themestore.home
 
+import ai.ftech.themestore.Key
 import ai.ftech.themestore.R
 import ai.ftech.themestore.detailPreview.DetailActivity
 import ai.ftech.themestore.detailPreview.ListDisplay
@@ -25,19 +26,18 @@ import java.util.*
 class HomeFragment : Fragment() {
     private lateinit var rvHome: RecyclerView
     private lateinit var prbLoading: ProgressBar
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private var homeAdapter = HomeAdapter().apply {
         iOnClickPost = object : HomeAdapter.IOnClickPost {
             override fun onClickPost(post: Post) {
-                Log.d("123", "onClickPost: ")
                 if (context != null) {
                     val intent = Intent(context, DetailActivity::class.java)
-                    intent.putExtra("thomnt", post)
+                    intent.putExtra(Key.KEY_DETAIL, post)
                     context!!.startActivity(intent)
                 }
             }
         }
     }
-    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -57,7 +57,6 @@ class HomeFragment : Fragment() {
         val staggeredGridLayoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
-//        staggeredGridLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
         rvHome.layoutManager = staggeredGridLayoutManager
 
         rvHome.adapter = homeAdapter
@@ -71,7 +70,7 @@ class HomeFragment : Fragment() {
 
         lifecycleScope.launch(Dispatchers.IO) {
 
-            listPost = ListDisplay.listElement()
+            listPost = ListDisplay.listPost()
 
             withContext(Dispatchers.Main) {
                 homeAdapter.resetData(listPost)

@@ -1,4 +1,4 @@
-package ai.ftech.themestore.fragment
+package ai.ftech.themestore
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

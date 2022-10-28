@@ -1,21 +1,19 @@
 package ai.ftech.themestore.detailPreview
 
+import ai.ftech.themestore.Key
 import ai.ftech.themestore.R
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.AlertDialog
 import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -31,8 +29,8 @@ import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import de.hdodenhof.circleimageview.CircleImageView
-
 class DetailAdapter(
     private val postDetail: Post,
     private var context: Context
@@ -44,12 +42,18 @@ class DetailAdapter(
     }
 
     private val listMoreLikeThis: MutableList<Post> = mutableListOf()
-    private var mPlayer: SimpleExoPlayer? = null
-    private lateinit var sharedPreferences : SharedPreferences
+    private val player: SimpleExoPlayer? = null
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var sharedPreferencesFllow: SharedPreferences
+    private var listPost: MutableList<Post> = mutableListOf()
+    private lateinit var editor: SharedPreferences.Editor
+    private val gson = Gson()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        sharedPreferences = context.getSharedPreferences("SaveData", Context.MODE_PRIVATE)
+        sharedPreferences = context.getSharedPreferences("Save", Context.MODE_PRIVATE)
+        sharedPreferencesFllow = context.getSharedPreferences("Follow", Context.MODE_PRIVATE)
+
         if (viewType == POST_DETAIL_TYPE) {
             val imageDetailView: View = LayoutInflater
                 .from(parent.context)
@@ -78,7 +82,7 @@ class DetailAdapter(
                     holder.btShareDetail.setOnClickListener {
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.putExtra(Intent.EXTRA_TEXT, "https://i.pinimg.com/236x/3c/d4/90/3cd490db9071e1aae2114e28929b51e5.jpg")
-                        shareIntent.setType("text/plain")
+                        shareIntent.type = "text/plain"
                         shareIntent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
                         context.startActivity(shareIntent)
                     }
@@ -95,26 +99,55 @@ class DetailAdapter(
                         showBottomSheetDialogComment()
                     }
 
+                    var check: Boolean = true
                     holder.btSaveDetail.setOnClickListener {
-                        Toast.makeText(context, "Đã lưu", Toast.LENGTH_SHORT).show()
+                        if (check) {
+                            holder.btSaveDetail.text = "Đã lưu"
+                            check = false
+                            editor = sharedPreferences.edit()
+                            val listType = object : TypeToken<List<Post>>() {}.type
+                            val jsonPost = sharedPreferences.getString(Key.KEY_SAVE, null)
+                            if(jsonPost!=null){
+                                listPost = gson.fromJson(jsonPost, listType)
+                            }
+                            listPost.add(postDetail)
+                            val listPost1 = gson.toJson(listPost)
+                            editor.putString(Key.KEY_SAVE, listPost1)
+                            editor.apply()
+                        } else {
+                            holder.btSaveDetail.text = "Lưu"
+                            check = true
+                            editor = sharedPreferences.edit()
+                            editor.remove(Key.KEY_SAVE)
+                            editor.remove("statusButton")
+                            editor.apply()
 
-                        val editor : SharedPreferences.Editor = sharedPreferences.edit()
-                        val gson : Gson = Gson()
-                        val listSaved : MutableList<Post> = mutableListOf()
-                        listSaved.add(postDetail)
-                        val jsonList = gson.toJson(listSaved)
-                        editor.putString("imageSaved", jsonList)
-                        listSaved.size
+                        }
                     }
+                    holder.btFollowDetail.setOnClickListener {
+                        check = if (check) {
+                            holder.btFollowDetail.text = "Đang theo dõi"
+                            holder.btFollowDetail.setTextColor(Color.RED)
+                            false
+                        } else {
+                            holder.btFollowDetail.text = "Theo dõi"
+                            holder.btFollowDetail.setTextColor(Color.BLACK)
+                            true
+                        }
+                    }
+
+
                 }
                 is MoreLikeThisViewHolder -> {
                     if (position > 0) {
-                        val elementImageMore = listMoreLikeThis[position - 1]
-                        holder.bindDataMoreLikeThis(elementImageMore)
+                        val postMore = listMoreLikeThis[position - 1]
+                        holder.bindDataMoreLikeThis(postMore)
 
-                        holder.ivImageMore.setOnClickListener { // click vào bất kì một ảnh trong list more like this sẽ hiện ra màn chi tiết của ảnh đó
+                        holder.bindDataMoreLikeThis(postMore)
+
+                        holder.ivImageMore.setOnClickListener {
                             val intent = Intent(context, DetailActivity::class.java)
-                            intent.putExtra("thomnt", elementImageMore)
+                            intent.putExtra(Key.KEY_DETAIL, postMore)
                             context.startActivity(intent)
                         }
                     }
@@ -146,7 +179,7 @@ class DetailAdapter(
     }
 
     private fun showBottomSheetDialog() {
-  //     bottomSheetDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        //     bottomSheetDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog)
 
@@ -183,16 +216,16 @@ class DetailAdapter(
     }
 
     private fun startDownload() {
-        val request : DownloadManager.Request = DownloadManager.Request(Uri.parse(postDetail.url))
-        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE or  DownloadManager.Request.NETWORK_WIFI)
+        val request: DownloadManager.Request = DownloadManager.Request(Uri.parse(postDetail.url))
+        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE or DownloadManager.Request.NETWORK_WIFI)
         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, System.currentTimeMillis().toString())
 
-        val downloadManager : DownloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-        if(downloadManager != null){
+        val downloadManager: DownloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        if (downloadManager != null) {
             downloadManager.enqueue(request)
-            if(postDetail.isImage()){
+            if (postDetail.isImage()) {
                 Toast.makeText(context, "Đã tải hình ảnh xuống!", Toast.LENGTH_SHORT).show()
-            }else
+            } else
                 Toast.makeText(context, "Đã tải video xuống!", Toast.LENGTH_SHORT).show()
         }
     }
@@ -265,6 +298,7 @@ class DetailAdapter(
         val btAccessDetail: Button
         val btShareDetail: ImageButton
         val btSaveDetail: Button
+        val btFollowDetail: Button
         var exoPlayer: PlayerView
 
         val player = SimpleExoPlayer.Builder(context).build()
@@ -287,13 +321,18 @@ class DetailAdapter(
             btAccessDetail = itemView.findViewById(R.id.btAccessDetail)
             btShareDetail = itemView.findViewById(R.id.ibShareDetail)
             btSaveDetail = itemView.findViewById(R.id.btSaveDetail)
+            btFollowDetail = itemView.findViewById(R.id.btFllowDetail)
             exoPlayer = itemView.findViewById(R.id.exoPvVideo)
 
             if (postDetail.isImage()) {
                 ivImage.visibility = ImageView.VISIBLE
+                ivBack.setColorFilter(Color.BLACK)
+                ivSelect.setColorFilter(Color.BLACK)
             } else {
                 exoPlayer.visibility = PlayerView.VISIBLE
                 ivImage.visibility = ImageView.GONE
+                ivBack.setColorFilter(Color.WHITE)
+                ivSelect.setColorFilter(Color.WHITE)
             }
             exoPlayer.player = player
             player.playWhenReady = true
@@ -302,15 +341,21 @@ class DetailAdapter(
         }
 
         fun bindDataImageDetail() {
-            Glide.with(context).load(postDetail.url).into(ivImage)
+            Glide.with(context)
+                .load(postDetail.url)
+                .into(ivImage)
             tvTitle.text = postDetail.title
             tvContent.text = postDetail.content
 
-            Glide.with(context).load(postDetail.urlAvatar).into(civAvatar)
+            Glide.with(context)
+                .load(postDetail.urlAvatar)
+                .into(civAvatar)
             tvAccountName.text = postDetail.nameA
             tvFollowersDetail.text = postDetail.follower
 
-            Glide.with(context).load(postDetail.url).into(civAvatarAccount)
+            Glide.with(context)
+                .load(postDetail.url)
+                .into(civAvatarAccount)
         }
     }
 
@@ -334,12 +379,17 @@ class DetailAdapter(
             llImageDetail = itemView.findViewById(R.id.llImageDetail)
         }
 
-        fun bindDataMoreLikeThis(elementPostMore: Post) {
+        fun bindDataMoreLikeThis(postMore: Post) {
             var requestOptions = RequestOptions()
             requestOptions = requestOptions.transform(CenterInside(), RoundedCorners(40))
 
-            Glide.with(context).load(elementPostMore.url).apply(requestOptions).into(ivImageMore)
-            tvTitleMore.text = elementPostMore.title
+            Glide.with(context)
+                .load(postMore.url)
+                .apply(requestOptions)
+                .placeholder(R.drawable.ic_image)
+                .into(ivImageMore)
+
+            tvTitleMore.text = postMore.title
         }
     }
 }

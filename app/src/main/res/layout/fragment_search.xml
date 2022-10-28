@@ -3,28 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.SearchFragment">
+    tools:context=".search.SearchFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <EditText
             android:id="@+id/edSearch"
             android:layout_width="match_parent"
-            android:layout_marginHorizontal="10dp"
             android:layout_height="40dp"
             android:layout_gravity="top"
-            android:layout_marginBottom="15dp"
+            android:layout_marginHorizontal="10dp"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="2dp"
+            android:paddingStart="10dp"
             android:background="@drawable/shape_bt_login3"
             android:drawableLeft="@drawable/ic_search"
-            android:hint=" Search ThemeStore"
+            android:hint="@string/searchTheme"
             android:textColorHint="@color/black"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="8dp"
             android:id="@+id/rvSearch"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

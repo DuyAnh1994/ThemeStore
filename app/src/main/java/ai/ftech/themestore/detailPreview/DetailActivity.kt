@@ -1,5 +1,6 @@
 package ai.ftech.themestore.detailPreview
 
+import ai.ftech.themestore.Key
 import ai.ftech.themestore.R
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +19,7 @@ class DetailActivity : AppCompatActivity(), Player.Listener{
 
         val extras: Bundle? = intent.extras
         if (extras != null) {
-            postDetail = extras.getSerializable("thomnt") as Post
+            postDetail = extras.getSerializable(Key.KEY_DETAIL) as Post
         }
 
         rvDetailPreview = findViewById(R.id.rvDetailPreview)
@@ -32,7 +33,7 @@ class DetailActivity : AppCompatActivity(), Player.Listener{
             }
         }
 
-        detailAdapter = DetailAdapter(postDetail, this)
+        detailAdapter = DetailAdapter( postDetail,this)
         detailAdapter.resetData(listUrl)
         rvDetailPreview.adapter = detailAdapter
 

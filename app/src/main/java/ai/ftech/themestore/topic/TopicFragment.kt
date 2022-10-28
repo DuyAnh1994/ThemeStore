@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import ai.ftech.themestore.R
 import ai.ftech.themestore.Tab
 import ai.ftech.themestore.ViewPagerAdapter
-import ai.ftech.themestore.fragment.AudioFragment
+import ai.ftech.themestore.AudioFragment
 import ai.ftech.themestore.topic.videos.VideoFragment
 import ai.ftech.themestore.topic.images.ImageFragment
 import androidx.viewpager.widget.ViewPager

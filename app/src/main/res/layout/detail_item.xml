@@ -35,9 +35,13 @@
                     android:visibility="gone" />
 
                 <com.google.android.exoplayer2.ui.PlayerView
+                    android:background="@color/black"
+                    app:auto_show="false"
                     android:id="@+id/exoPvVideo"
+                    android:scaleType="fitCenter"
+                    app:resize_mode="fill"
                     android:layout_width="match_parent"
-                    android:layout_height="220dp"
+                    android:layout_height="380dp"
                     android:visibility="gone" />
 
                 <ImageView
@@ -175,6 +179,7 @@ Meme là gì mà lại được giới trẻ toàn thế giới cực kỳ ưa t
                 android:layout_marginEnd="44dp"
                 android:background="@drawable/shape_bt_login4"
                 android:text="@string/save"
+                android:textColor="@color/white"
                 android:textAllCaps="false"
                 app:layout_constraintEnd_toStartOf="@+id/ibShareDetail"
                 app:layout_constraintStart_toEndOf="@+id/btAccessDetail"

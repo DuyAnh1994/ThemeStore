@@ -9,7 +9,6 @@ object Utils {
     fun getBitmap(url: String): Bitmap? {
         val retriever = MediaMetadataRetriever()
        return try {
-           Log.d("getBitmap", "getBitmap: $url")
             retriever.setDataSource(url, HashMap<String, String>())
 
             val durationVideo = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)

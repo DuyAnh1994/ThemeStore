@@ -1,5 +1,6 @@
-package ai.ftech.themestore
+package ai.ftech.themestore.search
 
+import ai.ftech.themestore.R
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,7 @@ import com.bumptech.glide.Glide
 
 class SearchAdapter(
     private var listTitle : MutableList<String>,
-    private var listImageUrls: MutableList<ItemsSearch>,
+    private var listImageUrls: MutableList<ImageSearch>,
     private var context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 

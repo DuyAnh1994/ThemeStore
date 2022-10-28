@@ -1,5 +1,6 @@
 package ai.ftech.themestore.topic.videos
 
+import ai.ftech.themestore.Key
 import ai.ftech.themestore.R
 import ai.ftech.themestore.detailPreview.DetailActivity
 import ai.ftech.themestore.detailPreview.Post
@@ -29,21 +30,12 @@ class VideoAdapter(
     }
 
     override fun onBindViewHolder(holder: VideoAdapter.VideoViewHolder, position: Int) {
-        var requestOptions = RequestOptions()
-        requestOptions = requestOptions.transform(CenterInside(), RoundedCorners(40))
-         // lấy thumbnail của video
-        val retriever = MediaMetadataRetriever()
-        retriever.setDataSource(listVideoUrl[position].url, HashMap())
-        val image = retriever.getFrameAtTime(2000000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC)
-        Glide.with(context)
-            .load(image)
-            .apply(requestOptions)
-            .placeholder(R.drawable.ic_image)
-            .into(holder.ivImage)
+
+        holder.bindData(listVideoUrl[position])
 
         holder.ivImage.setOnClickListener {
             val intent = Intent(context, DetailActivity::class.java)
-            intent.putExtra("thomnt", listVideoUrl[position])
+            intent.putExtra(Key.KEY_DETAIL, listVideoUrl[position])
             context.startActivity(intent)
         }
     }
@@ -57,17 +49,30 @@ class VideoAdapter(
         this.listVideoUrl.clear()
         this.listVideoUrl.addAll(listVideoUrl)
         notifyDataSetChanged()
-
     }
+
     inner class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var ivImage : ImageView
         private var ivImageSelect : ImageView
+        var requestOptions = RequestOptions()
+        val retriever = MediaMetadataRetriever()
 
 
         init {
             ivImage = itemView.findViewById(R.id.ivImage)
             ivImageSelect = itemView.findViewById(R.id.ivImageSelect)
+            requestOptions = requestOptions.transform(CenterInside(), RoundedCorners(40))
+        }
 
+        fun bindData(post: Post){
+            // lấy thumbnail của video
+            retriever.setDataSource(post.url, HashMap())
+            val image = retriever.getFrameAtTime(2000000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC)
+            Glide.with(context)
+                .load(image)
+                .apply(requestOptions)
+                .placeholder(R.drawable.ic_image)
+                .into(ivImage)
         }
     }
 }
