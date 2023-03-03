@@ -37,15 +37,7 @@ class MainActivity : AppCompatActivity() {
         vpHomeAdapter.addTab(Tab(homeFragment))
         vpHomeAdapter.addTab(Tab(topicFragment))
         vpHomeAdapter.addTab(Tab(searchFragment))
-        vpHomeAdapter.addTab( Tab(accountFragment))
-
-        vpHome.setOnTouchListener(
-        object : View.OnTouchListener{
-            @SuppressLint("ClickableViewAccessibility")
-            override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
-                return true
-            }
-        })
+        vpHomeAdapter.addTab(Tab(accountFragment))
 
         vpHome.adapter = vpHomeAdapter
         vpHome.offscreenPageLimit = vpHomeAdapter.count
@@ -84,6 +76,14 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "Ấn back lần 2 để thoát!", Toast.LENGTH_SHORT).show()
 
         Handler(Looper.getMainLooper()).postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 1000)
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        return false
+    }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        return super.onTouchEvent(event)
     }
 }
 

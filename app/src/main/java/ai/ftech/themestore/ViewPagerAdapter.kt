@@ -1,6 +1,5 @@
 package ai.ftech.themestore
 
-import ai.ftech.themestore.account.CreatedFragment
 import androidx.fragment.app.*
 
 class ViewPagerAdapter(fragmentManager: FragmentManager) :FragmentPagerAdapter(fragmentManager) {
@@ -10,12 +9,12 @@ class ViewPagerAdapter(fragmentManager: FragmentManager) :FragmentPagerAdapter(f
     override fun getCount() : Int = listTab.size
 
     override fun getItem(position: Int): Fragment {
-       val tab = listTab.get(position)
+        val tab = listTab[position]
         return tab.fragment
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
-        val tab = listTab.get(position)
+    override fun getPageTitle(position: Int): CharSequence {
+        val tab = listTab[position]
         return tab.string
     }
 

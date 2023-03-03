@@ -4,7 +4,9 @@ import ai.ftech.themestore.Key
 import ai.ftech.themestore.R
 import ai.ftech.themestore.detailPreview.Post
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context.MODE_PRIVATE
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,13 +20,13 @@ import com.google.gson.reflect.TypeToken
 
 class SavedFragment : Fragment() {
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var sharedPreferencesFollow: SharedPreferences
     private lateinit var rvSaved: RecyclerView
     private lateinit var saveAdapter: SaveAdapter
     private lateinit var listSaved: MutableList<Post>
 
     companion object {
         private const val TAG = "SavedFragment"
+        const val SAVE_REQUEST_CODE = 1
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -32,20 +34,15 @@ class SavedFragment : Fragment() {
         sharedPreferences = context?.getSharedPreferences("Save", MODE_PRIVATE)!!
         return inflater.inflate(R.layout.fragment_saved, container, false)
     }
-
-    @SuppressLint("UseRequireInsteadOfGet", "CommitPrefEdits")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         rvSaved = view.findViewById(R.id.rvSaved)
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
         rvSaved.layoutManager = staggeredGridLayoutManager
-
         loadData()
-
     }
 
     fun loadData() {
         val jsonPost = sharedPreferences.getString(Key.KEY_SAVE, null)
-        val jsonPost1 = sharedPreferences.getString("followed", null)
         var post: MutableList<Post> = mutableListOf()
         if (jsonPost != null) {
             val gson = Gson()
@@ -61,3 +58,4 @@ class SavedFragment : Fragment() {
     }
 
 }
+

@@ -76,6 +76,17 @@
     <string name="commentLine">Chia sẻ điều bạn thích về Ghim này, cách Ghim truyền cảm hứng cho bạn hoặc đơn giản là đưa ra lời khen</string>
     <string name="titleSplash">Theme Store</string>
     <string name="searchTheme">Search ThemeStore</string>
+    <string name="log_in">Log in</string>
+    <string name="continue_with_facebook">Continue with Facebook</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="continue_with_apple">Continue with Apple</string>
+    <string name="or">OR</string>
+    <string name="title_email">Email</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="password">Mật khẩu</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="forgot_your_password">Forgot your password?</string>
 
 
 </resources>

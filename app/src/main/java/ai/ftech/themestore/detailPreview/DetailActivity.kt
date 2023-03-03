@@ -3,6 +3,7 @@ package ai.ftech.themestore.detailPreview
 import ai.ftech.themestore.Key
 import ai.ftech.themestore.R
 import android.os.Bundle
+import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,7 +17,6 @@ class DetailActivity : AppCompatActivity(), Player.Listener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_element_detail)
-
         val extras: Bundle? = intent.extras
         if (extras != null) {
             postDetail = extras.getSerializable(Key.KEY_DETAIL) as Post
@@ -49,7 +49,6 @@ class DetailActivity : AppCompatActivity(), Player.Listener{
         }
         rvDetailPreview.layoutManager = layoutManager
     }
-
 
 }
 

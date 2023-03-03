@@ -66,7 +66,7 @@ class DetailAdapter(
         return MoreLikeThisViewHolder(moreLikeThisView)
     }
 
-    @SuppressLint("CommitPrefEdits")
+    @SuppressLint("CommitPrefEdits", "NotifyDataSetChanged")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder.apply {
             when (holder) {
@@ -99,7 +99,7 @@ class DetailAdapter(
                         showBottomSheetDialogComment()
                     }
 
-                    var check: Boolean = true
+                    var check = true
                     holder.btSaveDetail.setOnClickListener {
                         if (check) {
                             holder.btSaveDetail.text = "Đã lưu"
@@ -121,9 +121,9 @@ class DetailAdapter(
                             editor.remove(Key.KEY_SAVE)
                             editor.remove("statusButton")
                             editor.apply()
-
                         }
                     }
+
                     holder.btFollowDetail.setOnClickListener {
                         check = if (check) {
                             holder.btFollowDetail.text = "Đang theo dõi"
@@ -135,8 +135,6 @@ class DetailAdapter(
                             true
                         }
                     }
-
-
                 }
                 is MoreLikeThisViewHolder -> {
                     if (position > 0) {
@@ -221,13 +219,11 @@ class DetailAdapter(
         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, System.currentTimeMillis().toString())
 
         val downloadManager: DownloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-        if (downloadManager != null) {
-            downloadManager.enqueue(request)
-            if (postDetail.isImage()) {
-                Toast.makeText(context, "Đã tải hình ảnh xuống!", Toast.LENGTH_SHORT).show()
-            } else
-                Toast.makeText(context, "Đã tải video xuống!", Toast.LENGTH_SHORT).show()
-        }
+        downloadManager.enqueue(request)
+        if (postDetail.isImage()) {
+            Toast.makeText(context, "Đã tải hình ảnh xuống!", Toast.LENGTH_SHORT).show()
+        } else
+            Toast.makeText(context, "Đã tải video xuống!", Toast.LENGTH_SHORT).show()
     }
 
     private fun showBottomSheetDialogReport() {
